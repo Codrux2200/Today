@@ -34,7 +34,7 @@ export const StarterLogin = () => {
                 <Text style={{ color: 'white', marginRight: 20, paddingTop: 20 }}>today application</Text>
             </View>
                 <View style = {{position : 'absolute', bottom : 60, gap : 30}}>
-                    <StarterButton action={() => {navigation.navigate("Home" as never)}} title="I'm a Consumer" type={0} />
+                    <StarterButton action={() => {navigation.navigate("home" as never)}} title="I'm a Consumer" type={0} />
                     <StarterButton action={() => {null}} title="I'm a Producer" type={1}/>
                 </View>
         </View>

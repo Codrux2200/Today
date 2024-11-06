@@ -19,7 +19,7 @@ const Menu = () => {
     
 
     return (
-        <ScrollView style={styles.container} horizontal = {true}>
+        <ScrollView style={styles.container} horizontal = {true} showsHorizontalScrollIndicator = {false}>
             {items.map((item, index) => (
                 <TouchableOpacity onPress={() => {setSelectedItem(item.name)}} key={index} style={[styles.menuItem, selectedItem == item.name ? styles.selectedItem : null]}>
                     <FontAwesome5 style={[styles.menuText, selectedItem == item.name ? styles.selectedText : null]} name={item.icon} size={24} color="black"  />
@@ -32,11 +32,9 @@ const Menu = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop : 20,
-        marginBottom : 20,
-        flex: 1,
-        borderBottomWidth: 1,
-        borderBottomColor : "#DADADA"
+        borderBottomColor : "#DADADA",
+        maxHeight: 70,
+        borderBottomWidth : 1,
     },
     selectedItem:{
         color : "black",
@@ -44,6 +42,7 @@ const styles = StyleSheet.create({
     },
     menuItem: {
         padding: 14,
+        height: 70,
         color : "#DADADA",
         display : "flex",
         justifyContent : "center",

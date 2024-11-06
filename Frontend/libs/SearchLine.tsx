@@ -22,7 +22,6 @@ export const SearchLine: React.FC = () => {
                     onChangeText={handleSearch}
                 />
             </View>
-            
         </View>
     );
 };
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
         display : 'flex',
         justifyContent : 'center',
         alignItems : 'center',
-        flexDirection : 'row',
+        flexDirection : 'column',
         textAlign : 'center',
         borderLeftWidth : 2,
         borderLeftColor : 'rgba(0,0,0,0.1)',

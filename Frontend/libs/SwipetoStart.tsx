@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   slider: {
-    backgroundColor: '#FE7A36',
+    backgroundColor: '#C9D8E2',
     borderRadius: 20,
     height: 64,
     display : 'flex',

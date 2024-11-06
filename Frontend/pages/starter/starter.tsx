@@ -28,7 +28,7 @@ export const Starter = () => {
         }
     };
 
-    const { width, height } = Dimensions.get('window');
+    const { width, height } = Dimensions.get("screen");
     const [text, settext] = useState(0);
     const textStrings = [
         "Purchase credits to book group or individual classes.",
@@ -46,7 +46,7 @@ export const Starter = () => {
             <ImageSlider
                 data={images}
                 localImg
-                activeIndicatorStyle={{ backgroundColor: "orange", width: 80 }}
+                activeIndicatorStyle={{ backgroundColor: "#C9D8E2", width: 80 }}
                 onItemChanged={(item) => handleItemChanged(item.img)}
                 preview={false}
                 indicatorContainerStyle={{ bottom: height - 100, right: 0 }}

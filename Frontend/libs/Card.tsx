@@ -27,20 +27,16 @@ const Card: React.FC<CardProps> = ({ title, content }) => {
         const fakeData = { date: "15.12.2021 13:35" };
         const [day, month, year] = fakeData.date.split(" ")[0].split(".");
         const [hour, minute] = fakeData.date.split(" ")[1].split(":");
-        
-        // Créer l'objet Date en utilisant les composants jour, mois, année, heure, minute
         const date = new Date(stringdate);
         
-        // Obtenir l'heure formatée
         const timeOptions: Intl.DateTimeFormatOptions = {
             hour: '2-digit',
             minute: '2-digit',
         };
         
-        // Obtenir la date du jour et de demain
         const today = new Date();
         const tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1); // Incrémenter pour obtenir demain
+        tomorrow.setDate(today.getDate() + 1);
         
         // Comparer les dates pour vérifier "Today" ou "Tomorrow"
         const isToday = date.toDateString() === today.toDateString();
@@ -77,13 +73,13 @@ const Card: React.FC<CardProps> = ({ title, content }) => {
 
     return (
         <View style={styles.card}>
-            <View style = {{ width: 215, height: 248}}> 
-                <Image source={{ uri: fakeData.picture }} style={{ width: 215, height: 248, borderRadius : 15, position : "absolute" }} />
+            <View style = {{ width: 215, height: 120}}> 
+                <Image source={{ uri: fakeData.picture }} style={{ width: 215, height: 120, borderRadius : 15, position : "absolute" }} />
                 <View style = {{display : "flex", paddingLeft : 20, paddingTop : 10, flexDirection : 'row', justifyContent : "space-between", paddingRight : 20}}>
                     <View style = {{width : 36, height : 16, backgroundColor : "white", borderRadius : 60, display : 'flex', alignItems : "center", flexDirection : "row",
                         padding : 2, gap : 2,
                     }}>
-                        <FontAwesome5 name="star" size={10} color="#FE7A36" solid />
+                        <FontAwesome5 name="star" size={10} color="#C9D8E2" solid />
                         <Text style = {{fontSize : 10, fontWeight : "bold"}}>{fakeData.grade}</Text></View>
                         <View style = {{borderRadius : 100, borderWidth : 1, borderColor : "white", padding : 3}}>
                         <FontAwesome5 name="star" size={15} color="white" />
@@ -95,11 +91,10 @@ const Card: React.FC<CardProps> = ({ title, content }) => {
                     <Text style={styles.title}>{fakeData.title}</Text>
                     <Text style = {{fontSize : 10}}>by <Text style={{fontWeight : "bold"}}>{fakeData.author}</Text></Text>
             </View>
-                <Text style={styles.content}>{fakeData.coin} COIN</Text>
             </View>
             <View>
                 <View style = {{display : "flex", flexDirection : "row", alignItems : "center", gap : 5}}>
-                    <FontAwesome5 name="calendar" size={13} color="#FE7A36" solid />
+                    <FontAwesome5 name="calendar" size={13} color="#C9D8E2" solid />
                     <Text>{getformattedDate(fakeData.date)}</Text>
                 </View>
             <View style = {styles.horizontal}>
@@ -124,7 +119,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 22,
         width: 231,
-        height: 394,
+        height: "auto",
         display : 'flex',
         justifyContent : "space-between",
     },
@@ -141,7 +136,7 @@ const styles = StyleSheet.create({
     },
     content: {
         fontSize: 14,
-        color: '#FE7A36',
+        color: '#C9D8E2',
         fontWeight : "bold",
     },
 });

@@ -4,8 +4,9 @@ import {LinearGradient} from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { icon } from '@fortawesome/fontawesome-svg-core';
+import { useNavigation } from '@react-navigation/native';
 const AbsolutMenu: React.FC = () => {
-
+    const navigation = useNavigation();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [color, setColor] = useState(0);
 
@@ -41,8 +42,8 @@ const AbsolutMenu: React.FC = () => {
                 {icons.map((icon, index) => {
 
                     return (
-                        <TouchableOpacity onPressIn={() => {setCurrentIndex(index)}} style = {[{display : "flex", flexDirection : "row", alignItems : "center", height : 84, width : 84, borderRadius : 100, justifyContent : "center"},  currentIndex != index ?  null : {backgroundColor : 'white'} ]}>
-                            <FontAwesome5 name={icon.name} size={25} color={currentIndex == index ? "#FE7A36" : "white"} />
+                        <TouchableOpacity onPressIn={() => {setCurrentIndex(index); navigation.navigate(icons[index].name as never) }} style = {[{display : "flex", flexDirection : "row", alignItems : "center", height : 84, width : 84, borderRadius : 100, justifyContent : "center"},  currentIndex != index ?  null : {backgroundColor : 'white'} ]}>
+                            <FontAwesome5 name={icon.name} size={25} color={currentIndex == index ? "#C9D8E2" : "white"} />
                         </TouchableOpacity>
                     );
                 }

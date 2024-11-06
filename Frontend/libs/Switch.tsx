@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         color : "#DFDFDF"
     },
     touchableselected:{
-        backgroundColor : "#FE7A36", 
+        backgroundColor : "#C9D8E2", 
         width : 90, 
         height : "100%", 
         borderRadius : 33,

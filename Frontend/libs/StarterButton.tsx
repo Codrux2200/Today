@@ -23,12 +23,12 @@ interface StarterButtonProps {
 export const StarterButton: React.FC<StarterButtonProps> = ({title, type, action}) => {
 
     const params = [{
-            backgroundColor : orange,
+            backgroundColor : "#C9D8E2",
             color : "white",        
     },
     {
             backgroundColor : "white",
-            color : orange,
+            color : "#C9D8E2",
     }];
 
     return(
