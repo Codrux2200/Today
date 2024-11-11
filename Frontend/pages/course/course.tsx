@@ -45,7 +45,7 @@ const CoursePage = () => {
                 </View>
                     </View>
 
-                <View style = {{height : "50%", backgroundColor : '#f5f6f9', borderRadius : 30, display : "flex", justifyContent : "space-between", flexDirection : "column"}}>
+                <View style = {{height : "50%", backgroundColor : '#f5f6f9', borderTopLeftRadius : 30, borderTopRightRadius : 30, display : "flex", justifyContent : "space-between", flexDirection : "column"}}>
 
                         <View>
                         <View style = {{marginLeft : 20, marginRight : 20, marginTop : 20, display : 'flex', flexDirection : 'row', justifyContent : 'space-between'}}>
