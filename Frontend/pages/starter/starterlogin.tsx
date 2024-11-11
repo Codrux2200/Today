@@ -35,7 +35,6 @@ export const StarterLogin = () => {
             </View>
                 <View style = {{position : 'absolute', bottom : 60, gap : 30}}>
                     <StarterButton action={() => {navigation.navigate("home" as never)}} title="I'm a Consumer" type={0} />
-                    <StarterButton action={() => {null}} title="I'm a Producer" type={1}/>
                 </View>
         </View>
     );

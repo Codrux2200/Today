@@ -8,6 +8,9 @@ import AbsolutMenu from './libs/AbsolutMenu';
 import ProfilePage from './pages/profile/profile';
 import { useEffect } from 'react';
 import React from 'react';
+import CalendarPage from './pages/calendar/calendar';
+import CoursePage from './pages/course/course';
+import SearchPage from './pages/search/search';
 const Stack = createNativeStackNavigator();
 export const orange = "#FE7A36";
 
@@ -38,12 +41,15 @@ export default function App() {
         routeNameRef.current = currentRouteName ?? null;
       }}
     >
-      {currentRoute != "Starter" && currentRoute != "Homeblogin"  ? <AbsolutMenu /> : null}
+      {currentRoute != "Starter" && currentRoute != "Homeblogin" && currentRoute != "course" ? <AbsolutMenu /> : null}
       <Stack.Navigator initialRouteName="Starter">
         <Stack.Screen name="Starter" options={{ headerShown: false }} component={Starter} />
         <Stack.Screen options={{ headerShown: false }} name="Homeblogin" component={StarterLogin} />
         <Stack.Screen options={{ headerShown: false }} name="home" component={Home} />
         <Stack.Screen options={{ headerShown: false }} name="user" component={ProfilePage} />
+        <Stack.Screen options={{ headerShown: false }} name="calendar" component={CalendarPage} />
+        <Stack.Screen options={{ headerShown: false }} name="course" component={CoursePage} />
+        <Stack.Screen options={{ headerShown: false }} name="search" component={SearchPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

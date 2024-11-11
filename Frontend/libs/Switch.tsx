@@ -42,14 +42,18 @@ const styles = StyleSheet.create({
         paddingRight: 5,
         display: 'flex',
         flexDirection: 'row',
+        alignContent : 'center',
+        alignItems : 'center',
+
     },
     textselected:{
-        color : "#DFDFDF"
+        color : "#DFDFDF",
+        fontFamily : 'Poppins-Black'
     },
     touchableselected:{
         backgroundColor : "#C9D8E2", 
         width : 90, 
-        height : "100%", 
+        height : "80%", 
         borderRadius : 33,
         display : "flex",
         justifyContent : "center",

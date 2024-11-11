@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     container: {
         borderBottomColor : "#DADADA",
         maxHeight: 70,
-        borderBottomWidth : 1,
+        borderBottomWidth : 1
     },
     selectedItem:{
         color : "black",
@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
     },
     menuItem: {
         padding: 14,
+        marginLeft : 10,
+        marginRight : 10,
         height: 70,
         color : "#DADADA",
         display : "flex",
@@ -53,9 +55,11 @@ const styles = StyleSheet.create({
     selectedText:{
         color : "black",
         fontWeight: "bold",
+        fontFamily : 'Poppins-Black'
     },
     menuText: {
-         color : "#DADADA"
+         color : "#DADADA",
+         fontFamily : 'Poppins-Black',
     }
 });
 

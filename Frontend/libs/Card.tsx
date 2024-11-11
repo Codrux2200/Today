@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 interface CardProps {
     title: string;
@@ -21,7 +22,7 @@ const fakeData = {
 };
 
 const Card: React.FC<CardProps> = ({ title, content }) => {
-
+    const navigation = useNavigation<any>();
 
     function getformattedDate(stringdate : string){
         const fakeData = { date: "15.12.2021 13:35" };
@@ -72,7 +73,7 @@ const Card: React.FC<CardProps> = ({ title, content }) => {
     }
 
     return (
-        <View style={styles.card}>
+        <TouchableOpacity onPress={() => {navigation.navigate("course")}} style={styles.card}>
             <View style = {{ width: 215, height: 120}}> 
                 <Image source={{ uri: fakeData.picture }} style={{ width: 215, height: 120, borderRadius : 15, position : "absolute" }} />
                 <View style = {{display : "flex", paddingLeft : 20, paddingTop : 10, flexDirection : 'row', justifyContent : "space-between", paddingRight : 20}}>
@@ -108,7 +109,7 @@ const Card: React.FC<CardProps> = ({ title, content }) => {
                 </View>
             </View>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 

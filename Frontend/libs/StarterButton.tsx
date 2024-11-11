@@ -1,40 +1,64 @@
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 import {
-  Animated,
-  LayoutChangeEvent,
-  PanResponder,
+  Dimensions,
   StyleSheet,
   Text,
-  View,
-  ViewStyle,
-  Image,
-  TouchableOpacity
+  TouchableOpacity,
+  View
 } from 'react-native';
-import { Dimensions } from 'react-native';
-import { orange } from '../App';
-
 
 interface StarterButtonProps {
   title: string;
   type: number;
-  action : () => void;
+  action: () => void;
 }
 
-export const StarterButton: React.FC<StarterButtonProps> = ({title, type, action}) => {
-
-    const params = [{
-            backgroundColor : "#C9D8E2",
-            color : "white",        
+export const StarterButton: React.FC<StarterButtonProps> = ({ title, type, action }) => {
+  const params = [
+    {
+      backgroundColor: "#C9D8E2",
+      color: "white",
     },
     {
-            backgroundColor : "white",
-            color : "#C9D8E2",
-    }];
+      backgroundColor: "white",
+      color: "#C9D8E2",
+    }
+  ];
 
-    return(
-        <TouchableOpacity onPress={action} style = {{backgroundColor : params[type].backgroundColor, width : Dimensions.get("window").width - 30, height : 89, borderRadius : 18, display : 'flex', alignItems : "center", justifyContent : "center", }}>
-            <Text style = {{color : params[type].color,  fontSize: 25, fontWeight: 'bold'}}>{title}</Text>
-        </TouchableOpacity>
-    );
-
+  return (
+    <View style={[styles.button, { backgroundColor: params[type].backgroundColor }]}>
+      <TouchableOpacity style = {{width : "50%", alignItems : "center", justifyContent : "center" , padding : 10, backgroundColor : "white", height : "100%", borderTopLeftRadius : 18, borderBottomLeftRadius : 18}} onPress={() => {alert("not coded yet")}}>
+        <Text style={[styles.text, { color: "#C9D8E2" }]}>{"I'm a Producer"}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style = {{width : "50%", alignItems : "center", justifyContent : "center", padding : 10, height : "100%"}} onPress={action}>
+        <Text style={[styles.text, { color: "white" }]}>{title}</Text>
+      </TouchableOpacity>
+    
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    width: Dimensions.get("window").width - 30,
+    height: 89,
+    borderRadius: 18,
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: "center",
+    position: 'relative',
+    flexDirection: 'row',
+  },
+  bar: {
+    position: 'absolute',
+    width: 2,
+    height: '100%',
+    backgroundColor: 'black',
+    left: '50%',
+    transform: [{ translateX: -1 }],
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});

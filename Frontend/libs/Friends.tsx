@@ -18,20 +18,22 @@ const Friends: React.FC = () => {
     return (
         <View style={styles.container}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Friends</Text>
-            <Button title="Show All" onPress={() => setShowAll(!showAll)} />
+                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Friends</Text>
+                <Button title="Show All" onPress={() => setShowAll(!showAll)} />
             </View>
             <FlatList
-            data={displayedFriends}
-            keyExtractor={item => item.id.toString()}
-            horizontal={!showAll}
-            renderItem={({ item }) => (
-                <View style={styles.friendContainer}>
-                <Image source={{ uri: item.avatar }} style={styles.avatar} />
-                <Text style={styles.name}>{item.name}</Text>
-                </View>
-            )}
-            contentContainerStyle={styles.flatList}
+                data={displayedFriends}
+                keyExtractor={item => item.id.toString()}
+                horizontal={!showAll}
+                key={showAll ? 5 : 1} // Change the key when showAll is true
+                numColumns={showAll ? 2 : 1} // Change the number of columns when showAll is true
+                renderItem={({ item }) => (
+                    <View style={styles.friendContainer}>
+                        <Image source={{ uri: item.avatar }} style={styles.avatar} />
+                        <Text style={styles.name}>{item.name}</Text>
+                    </View>
+                )}
+                contentContainerStyle={styles.flatList}
             />
         </View>
     );
@@ -40,6 +42,7 @@ const Friends: React.FC = () => {
 const styles = StyleSheet.create({
     container: {
         padding: 10,
+        width: '100%',
     },
     flatList: {
         marginBottom: 10,
@@ -48,6 +51,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginRight: 10,
         padding: 10,
+        flex: 1, // Ensure the items take up equal space
     },
     avatar: {
         width: 70,

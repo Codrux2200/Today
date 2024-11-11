@@ -13,7 +13,7 @@ export const SearchLine: React.FC = () => {
 
     return (
         <View style={styles.container}>
-            <View style = {{width : "70%", display : "flex", flexDirection : 'row', alignItems :"center"}}>
+            <View style = {{width : "60%", display : "flex", flexDirection : 'row', alignItems :"center"}}>
                 <FontAwesome5 name="search" size={20} color="black" solid />
                 <TextInput
                     style={styles.input}
@@ -21,6 +21,10 @@ export const SearchLine: React.FC = () => {
                     value={searchText}
                     onChangeText={handleSearch}
                 />
+            </View>
+            <View style = {styles.coinView}>
+                <FontAwesome5Icon name="coins" size={20} color="black" solid />
+                <Text>20</Text>
             </View>
         </View>
     );
@@ -34,7 +38,7 @@ const styles = StyleSheet.create({
         borderRadius: 33,
         display : 'flex',
         flexDirection : 'row',
-        height : 60,
+        height : 70,
         alignItems : 'center',
     },
     input: {

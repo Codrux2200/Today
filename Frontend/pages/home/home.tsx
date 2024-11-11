@@ -17,7 +17,9 @@ export function Home() {
             <View style = {styles.switchContainer}>
                 <Switch text1='Health' text2='Wellness' setexternselected={setexternselected}></Switch>
             </View>
-            <View style = {styles.centerelement}><SearchLine></SearchLine></View>
+            <Text style = {{fontSize : 15, marginBottom : 30, marginLeft : 20}}>Take a look at the available  Gym</Text>
+            <View style = {styles.centerelement}>
+                <SearchLine></SearchLine></View>
             <Menu></Menu>
             <Categories></Categories>
 
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
 
     },
     container: {
-        backgroundColor: "white",
+        backgroundColor: "#f5f6f9",
         flex: 1,
     },
     coinView:{
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: "flex-end",
         marginBottom: 30,
+        paddingRight: 20,
     },
     cardContainer: {
         flexDirection: 'row',
