@@ -8,6 +8,7 @@ import { ImageBackground } from 'react-native';
 import { BlurView } from 'expo-blur';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import {GlobalText} from '../../libs/GlobalText';
 
 const months = [
     { label: 'January', value: 'January' },
@@ -35,7 +36,7 @@ const MapCard = () => {
                 imageStyle={{ borderRadius: 15 }}
             >
                 <BlurView intensity={50} style={{ padding: 10, borderRadius: 10 }}>
-                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>View Map ></Text>
+                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>View Map </Text>
                 </BlurView>
             </ImageBackground>
         </View>
@@ -153,7 +154,6 @@ const SearchPage = () => {
             <View style = {styles.switchContainer}>
             <Switch text1='Health' text2='Wellness' setexternselected={setexternselected}></Switch>
             </View>
-            <Text style = {{fontSize : 15, marginBottom : 30, marginLeft : 20}}>Take a look at the available Gym</Text>
             <View style = {styles.centerelement}>
             <SearchLine></SearchLine></View>
             <MonthSelector />

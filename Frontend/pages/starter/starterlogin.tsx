@@ -7,6 +7,7 @@ import SwipeToStart from '../../libs/SwipetoStart';
 import React, { useState } from 'react';
 import {StarterButton} from '../../libs/StarterButton'; // Adjust the import path as necessary
 import { useNavigation } from '@react-navigation/native';
+import GlobalText from '../../libs/GlobalText';
 
 export const StarterLogin = () => {
     const navigation = useNavigation();
@@ -42,6 +43,7 @@ export const StarterLogin = () => {
 
 const styles = StyleSheet.create({
     container: {
+        fontFamily: 'CustomFont',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',

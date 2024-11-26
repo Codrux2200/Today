@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import GlobalText from './GlobalText';
 
 interface StarterButtonProps {
   title: string;
@@ -26,39 +27,55 @@ export const StarterButton: React.FC<StarterButtonProps> = ({ title, type, actio
   ];
 
   return (
-    <View style={[styles.button, { backgroundColor: params[type].backgroundColor }]}>
-      <TouchableOpacity style = {{width : "50%", alignItems : "center", justifyContent : "center" , padding : 10, backgroundColor : "white", height : "100%", borderTopLeftRadius : 18, borderBottomLeftRadius : 18}} onPress={() => {alert("not coded yet")}}>
-        <Text style={[styles.text, { color: "#C9D8E2" }]}>{"I'm a Producer"}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style = {{width : "50%", alignItems : "center", justifyContent : "center", padding : 10, height : "100%"}} onPress={action}>
-        <Text style={[styles.text, { color: "white" }]}>{title}</Text>
-      </TouchableOpacity>
-    
-    </View>
-  );
+    <View style={styles.container}>
+    <TouchableOpacity 
+      style={[styles.button, styles.button1]} 
+      onPress={() => {alert('Button 1 clicked')}}
+    >
+      <Text style={[styles.buttonText, {color : '#C9D8E2'}]}>I'm a Producer</Text>
+    </TouchableOpacity>
+
+    <View style={styles.spacer} />  {/* Espace entre les boutons */}
+
+    <TouchableOpacity 
+      style={[styles.button, styles.button2]} 
+      onPress={() => {alert('MongoDb isn\'t a connected well please configure it well before using it')}}
+    >
+      <Text style={styles.buttonText}>I'am a consumer</Text>
+    </TouchableOpacity>
+  </View>
+);
 };
 
 const styles = StyleSheet.create({
-  button: {
-    width: Dimensions.get("window").width - 30,
-    height: 89,
-    borderRadius: 18,
-    display: 'flex',
-    alignItems: "center",
-    justifyContent: "center",
-    position: 'relative',
-    flexDirection: 'row',
-  },
-  bar: {
-    position: 'absolute',
-    width: 2,
-    height: '100%',
-    backgroundColor: 'black',
-    left: '50%',
-    transform: [{ translateX: -1 }],
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
+container: {
+  gap: 10,  // Espace entre les boutons
+  alignItems: 'center',
+  justifyContent: 'center',
+  width : Dimensions.get('window').width,
+  flexDirection: 'row',
+},
+button: {
+  width: '40%',
+  height: 60,
+  padding: 15,
+  borderRadius: 8,
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginBottom: 10,  // S'il n'y a pas de spacer, on peut donner un marginBottom
+},
+button1: {
+  backgroundColor: 'white',  // Bleu pour le premier bouton
+},
+button2: {
+  backgroundColor: '#C9D8E2',  // Vert pour le second bouton
+},
+buttonText: {
+  color: 'white',
+  fontSize: 13,
+  fontWeight: 'bold',
+},
+spacer: {
+  height: 20,  // Taille de l'espace entre les boutons
+}
 });

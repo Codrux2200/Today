@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, Button, TouchableOpacity, ScrollView } from 'react-native';
 import Friends from '../../libs/Friends';
 import { FontAwesome5 } from '@expo/vector-icons';
-
+import { GlobalText } from '../../libs/GlobalText';
 interface CustomButtonProps {
     title: string;
     icon: string;

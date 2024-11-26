@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Text } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import GlobalText from './GlobalText';
 
 export const SearchLine: React.FC = () => {
     const [searchText, setSearchText] = useState('');
@@ -23,8 +24,8 @@ export const SearchLine: React.FC = () => {
                 />
             </View>
             <View style = {styles.coinView}>
-                <FontAwesome5Icon name="coins" size={20} color="black" solid />
-                <Text>20</Text>
+                <Text style = {{fontWeight : "bold"}}>20</Text>
+                <Text style = {{fontWeight : "bold"}}>CREDITS</Text>
             </View>
         </View>
     );
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
         borderRadius: 33,
         display : 'flex',
         flexDirection : 'row',
-        height : 70,
+        height : 60,
         alignItems : 'center',
     },
     input: {

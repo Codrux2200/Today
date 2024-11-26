@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import GlobalText from './GlobalText';
 interface CardProps {
     title: string;
     content: string;
@@ -18,7 +19,6 @@ const fakeData = {
     grade : 4.5,
     isFavorite : false,
     picture : "https://img.freepik.com/photos-premium/jeune-femme-debout-dans-position-exercice-yoga-girl-balancing-pratique-exercices-etirement-au-cours-yoga-elle-est-debout-jambe_120968-252.jpg"
-
 };
 
 const Card: React.FC<CardProps> = ({ title, content }) => {

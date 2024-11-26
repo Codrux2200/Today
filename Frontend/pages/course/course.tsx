@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, ImageBackground, Touchable, TouchableOpacity, I
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import GlobalText from '../../libs/GlobalText';
 
 const CoursePage = () => {
     const navigation = useNavigation();
@@ -37,11 +38,11 @@ const CoursePage = () => {
                         <Text style = {{color : 'white', fontWeight : 'bold', fontSize : 40}}>Courses Test Page</Text>
                         <Text style = {{color : 'white', fontSize : 15}}>made by <Text style={{fontWeight : 'bold'}}>author</Text></Text>
                         </View>
-                        <View style = {{width : 50, height : 30, backgroundColor : "white", borderRadius : 60, display : 'flex', alignItems : "center", flexDirection : "row",
+                        <View style = {{width : 70, height : 30, backgroundColor : "white", borderRadius : 60, display : 'flex', alignItems : "center", flexDirection : "row",
                         padding : 2, justifyContent : 'space-around'
                     }}>
                         <FontAwesome5 name="star" size={15} color="#C9D8E2" solid />
-                        <Text style = {{fontSize : 20, fontWeight : "bold"}}>4</Text></View>
+                        <Text style = {{fontSize : 20, fontWeight : "bold"}}>4.9</Text></View>
                 </View>
                     </View>
 

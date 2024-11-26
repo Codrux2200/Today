@@ -36,7 +36,7 @@ const AbsolutMenu: React.FC = () => {
         <LinearGradient colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.5)']} // Dégradé du transparent au noir avec 20% d'opacité
         style={styles.container}>
             <BlurView style={{
-                position: 'absolute', bottom: 50, backgroundColor: "rgba(255, 255, 255, 0.2)", width: '70%', height: 84, borderRadius: 100, overflow: 'hidden',
+                position: 'absolute', bottom: 50, backgroundColor: "rgba(255, 255, 255, 0.2)", width: '80%', height: 90, borderRadius: 100, overflow: 'hidden',
                 display: 'flex', flexDirection: 'row', alignItems: "center", justifyContent:"space-around", padding : 10,
             }}> 
                 {icons.map((icon, index) => {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 700,
         zIndex : 10000,
-        left: -20,
+        left: -40,
         right:-30,
         bottom: 0,
         justifyContent: 'center',

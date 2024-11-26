@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, FlatList, Button, StyleSheet } from 'react-native';
+import GlobalText from './GlobalText';
 
 const friendsData = [
     { id: 1, name: 'Alice', avatar: 'https://randomuser.me/api/portraits/women/1.jpg' },

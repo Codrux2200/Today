@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { orange } from '../App';
 import { Animated } from 'react-native';
+import GlobalText from './GlobalText';
 
 interface SwitchProps {
     text1: string;

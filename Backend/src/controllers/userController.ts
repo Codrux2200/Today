@@ -1,14 +1,22 @@
 
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { getUserById, addUser } from '../services/userService';
+import User from '../models/User';
 
-export const getUser = async (request: FastifyRequest, reply: FastifyReply) => {
-  const user = await getUserById(request.params['id']);
-  return user ? reply.send(user) : reply.status(404).send({ message: 'User not found' });
+export const createUserHandler = async (req: FastifyRequest, reply: FastifyReply) => {
+  try {
+    const user = new User(req.body);
+    await user.save();
+    reply.status(201).send(user);
+  } catch (err) {
+    reply.status(500).send(err);
+  }
 };
 
-export const createUser = async (request: FastifyRequest, reply: FastifyReply) => {
-  const user = await addUser(request.body);
-  return reply.status(201).send(user);
+export const getUsersHandler = async (req: FastifyRequest, reply: FastifyReply) => {
+  try {
+    const users = await User.find();
+    reply.send(users);
+  } catch (err) {
+    reply.status(500).send(err);
+  }
 };
-    

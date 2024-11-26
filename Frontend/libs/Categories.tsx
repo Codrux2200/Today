@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 import Card from './Card'; // Adjust the import path as necessary
+import GlobalText from './GlobalText';
 
 const initialCategories = [
     {
-        title: 'Category 1',
+        title: 'Popular Courses',
         items: [
             { id: 1, content: 'Item 1' },
             { id: 2, content: 'Item 2' },
@@ -12,7 +13,7 @@ const initialCategories = [
         ],
     },
     {
-        title: 'Category 2',
+        title: 'New Courses',
         items: [
             { id: 4, content: 'Item 4' },
             { id: 5, content: 'Item 5' },
@@ -20,7 +21,7 @@ const initialCategories = [
         ],
     },
     {
-        title: 'Category 3',
+        title: 'Courses for you',
         items: [
             { id: 4, content: 'Item 4' },
             { id: 5, content: 'Item 5' },
@@ -59,7 +60,7 @@ const Categories: React.FC = () => {
                     ]}>
                         <View style={styles.categoryHeader}>
                             <Text style={styles.categoryTitle}>{item.title}</Text>
-                            <Button title="See all" onPress={() => handleSeeAll(item.title)} />
+                            <Button color={"#154551"} title="See all" onPress={() => handleSeeAll(item.title)} />
                         </View>
                         {expandedCategory === item.title ? (
                             <FlatList
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     categoryTitle: {
+        color : "#154551",
         fontSize: 18,
         fontWeight: 'bold',
     },

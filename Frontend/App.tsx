@@ -1,4 +1,5 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TextProps } from 'react-native';
+import * as Font from 'expo-font';
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Starter } from './pages/starter/starter';
@@ -6,20 +7,35 @@ import { StarterLogin } from './pages/starter/starterlogin';
 import { Home } from './pages/home/home';
 import AbsolutMenu from './libs/AbsolutMenu';
 import ProfilePage from './pages/profile/profile';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import CalendarPage from './pages/calendar/calendar';
 import CoursePage from './pages/course/course';
 import SearchPage from './pages/search/search';
 const Stack = createNativeStackNavigator();
 export const orange = "#FE7A36";
+import { Text } from "react-native";
+
+
+Text.contextType = React.createContext("HelveticaNeueMedium");
+const loadFonts = async () => {
+  await Font.loadAsync({
+    "CustomFont": require("./assets/fonts/HelveticaNeueMedium.otf"),
+  });
+};
+
 
 export default function App() {
   const routeNameRef = React.useRef<string | null>(null);
   const navigationRef = React.useRef<NavigationContainerRef<any> | null>(null);
   const [currentRoute, setCurrentRoute] = React.useState <any | null>("Starter");
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
+  React.useEffect(() => {
+    loadFonts().then(() => {setFontsLoaded(true), console.log("Fonts loaded")});
+  }, []);
 
+  
   useEffect(() => {
     const state = navigationRef.current?.getRootState();
     const currentRouteName = state?.routes[state.index]?.name;

@@ -9,6 +9,7 @@ import {
   ViewStyle,
   Image
 } from 'react-native';
+import GlobalText from './GlobalText';
 
 const SLIDER_WIDTH = 130;
 const SLIDER_MARGIN = 12;

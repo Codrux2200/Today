@@ -6,6 +6,7 @@ import { BlurView } from 'expo-blur';
 import SwipeToStart from '../../libs/SwipetoStart';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import GlobalText from '../../libs/GlobalText';
 export const Starter = () => {
     const navigation = useNavigation();
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -54,7 +55,7 @@ export const Starter = () => {
                 inActiveIndicatorStyle={{ width: 20, height: 5, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
             />
             <View style={{ position: 'absolute', top: "13%", width: "90%", marginLeft: "10%" }}>
-                <Text style={{ color: 'white', fontSize: 34, fontWeight: 'bold' }}>{textStrings[text]}</Text>
+                <Text style={{ color: 'white', fontSize: 34, fontWeight: 'bold', fontFamily : "HelveticaNeueMedium" }}>{textStrings[text]}</Text>
                 <Text style={{ color: 'white', marginRight: 20, paddingTop: 20 }}>today application</Text>
             </View>
             <BlurView style={{

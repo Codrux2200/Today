@@ -12,7 +12,6 @@ const CalendarPage = () => {
             <View style = {styles.switchContainer}>
                 <Switch text1='Health' text2='Wellness' setexternselected={setexternselected}></Switch>
             </View>
-            <Text style = {{fontSize : 15, marginBottom : 30, marginLeft : 20}}>Take a look at the available Gym</Text>
             <View style = {styles.centerelement}>
                 <SearchLine></SearchLine></View>
                 <Categories></Categories>
