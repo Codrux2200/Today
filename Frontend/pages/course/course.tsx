@@ -27,7 +27,7 @@ const CoursePage = () => {
                 <View style = {styles.TopView}> 
                      <TouchableOpacity onPress={() => navigation.goBack()}>
                     <BlurView style={{
-                        bottom: 50, backgroundColor: "rgba(255, 255, 255, 0.2)", width: 80, height: 80, borderRadius: 100, overflow: 'hidden',
+                        bottom: 50, backgroundColor: "rgba(255, 255, 255, 0.2)", width: 50, height: 50, borderRadius: 100, overflow: 'hidden',
                         display: 'flex', flexDirection: 'row', alignItems: "center", justifyContent:"space-around", padding : 10,
                     }}> 
                             <FontAwesome5Icon name="arrow-left" size={20} color="white" />
@@ -35,14 +35,14 @@ const CoursePage = () => {
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => alert("send to")}>
                     <BlurView style={{
-                        bottom: 50, backgroundColor: "rgba(255, 255, 255, 0.2)", width: 80, height: 80, borderRadius: 100, overflow: 'hidden',
+                        bottom: 50, backgroundColor: "rgba(255, 255, 255, 0.2)", width: 50, height: 50, borderRadius: 100, overflow: 'hidden',
                         display: 'flex', flexDirection: 'row', alignItems: "center", justifyContent:"space-around", padding : 10,
                     }}> 
                             <FontAwesome5Icon name="download" size={20} color="white" />
                         </BlurView>
                         </TouchableOpacity>
                     </View>
-                    <View style = {{height : "20%"}}></View>
+                    <View style = {{height : "25%"}}></View>
                     <View style = {{marginLeft : 20, marginRight : 20, marginBottom : 20, display : 'flex', flexDirection : 'row', width : '100%', alignItems : "flex-end"}}>
                         <View style = {{width : '70%'}}>
                         <Text style = {{color : 'white', fontWeight : 'bold', fontSize : 40}}>{currentData.Title}</Text>
