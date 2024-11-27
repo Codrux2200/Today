@@ -77,7 +77,7 @@ const Card: React.FC<CardProps> = ({ title, content }) => {
     return (
         <TouchableOpacity onPress={() => {navigation.navigate("course", {data : content})}} style={styles.card}>
             <View style = {{ width: 215, height: 120}}> 
-                <Image source={{ uri: fakeData.picture }} style={{ width: 215, height: 120, borderRadius : 15, position : "absolute" }} />
+                <Image source={{ uri: content.img }} style={{ width: 215, height: 120, borderRadius : 15, position : "absolute" }} />
                 <View style = {{display : "flex", paddingLeft : 20, paddingTop : 10, flexDirection : 'row', justifyContent : "space-between", paddingRight : 20}}>
                     <View style = {{width : 36, height : 16, backgroundColor : "white", borderRadius : 60, display : 'flex', alignItems : "center", flexDirection : "row",
                         padding : 2, gap : 2,

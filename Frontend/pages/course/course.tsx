@@ -20,7 +20,7 @@ const CoursePage = () => {
 
     return (
         <ImageBackground 
-            source={{ uri: 'https://uk.gymshark.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fwl6q2in9o7k3%2F18MddyaNPL1DSDpo6Zqpga%2F70322bad735570ddd0efa6f8cca90f6e%2Fhiit_leggings.jpeg&w=3840&q=90' }} 
+            source={{ uri: currentData.img }} 
             style={styles.background}
         >
             <View style={styles.container}>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     },   
     background: {
         flex: 1,
-        resizeMode: 'cover',
+        resizeMode: "cover",
         justifyContent: 'center',
     },
     container: {
