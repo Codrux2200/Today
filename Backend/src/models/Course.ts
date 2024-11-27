@@ -12,6 +12,7 @@ export interface ICourse extends Document {
   members: mongoose.Schema.Types.ObjectId[] | null;
   note: { note: number; by: string; comment: string }[];
   price: number;
+  img : string;
 }
 
 const CourseSchema: Schema = new Schema(
@@ -27,7 +28,8 @@ const CourseSchema: Schema = new Schema(
     by: { type: Schema.Types.ObjectId, ref: 'Creator' },
     members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     note: [{ note: Number, by: String, comment: String }],
-    price: { type: Number, required: true }
+    price: { type: Number, required: true },
+    img : {required: true, type : 'string'}
   },
   { timestamps: true }
 );

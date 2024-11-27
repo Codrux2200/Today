@@ -8,6 +8,9 @@ export default (app: FastifyInstance) => {
   app.post('/users', UserController.createUserHandler);
   app.get('/users', UserController.getUsersHandler);
 
+
+  app.get("/getcoursesbypopularity", CourseController.getCoursesByPopularityHandler);
+  app.get('/getcoursesbydate', CourseController.getCoursesByDateHandler);
   app.post('/courses', CourseController.createCourseHandler);
   app.get('/courses', CourseController.getCoursesHandler);
   app.get('/courses/:id', CourseController.getCourseByIdHandler);

@@ -1,13 +1,23 @@
 import { BlurView } from 'expo-blur';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, Text, ImageBackground, Touchable, TouchableOpacity, Image } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import GlobalText from '../../libs/GlobalText';
 
 const CoursePage = () => {
     const navigation = useNavigation();
+    const routes = useRoute();
+    const [currentData, setCurrentData] = React.useState<any>(routes.params.data != undefined ? routes.params.data : null);
+
+    useEffect(() => {
+        if (routes.params && 'data' in routes.params) {
+            setCurrentData(routes.params.data);
+            console.log(routes.params.data);
+        }
+    }, [routes.params]);
+
     return (
         <ImageBackground 
             source={{ uri: 'https://uk.gymshark.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fwl6q2in9o7k3%2F18MddyaNPL1DSDpo6Zqpga%2F70322bad735570ddd0efa6f8cca90f6e%2Fhiit_leggings.jpeg&w=3840&q=90' }} 
@@ -35,14 +45,14 @@ const CoursePage = () => {
                     <View style = {{height : "20%"}}></View>
                     <View style = {{marginLeft : 20, marginRight : 20, marginBottom : 20, display : 'flex', flexDirection : 'row', width : '100%', alignItems : "flex-end"}}>
                         <View style = {{width : '70%'}}>
-                        <Text style = {{color : 'white', fontWeight : 'bold', fontSize : 40}}>Courses Test Page</Text>
+                        <Text style = {{color : 'white', fontWeight : 'bold', fontSize : 40}}>{currentData.Title}</Text>
                         <Text style = {{color : 'white', fontSize : 15}}>made by <Text style={{fontWeight : 'bold'}}>author</Text></Text>
                         </View>
                         <View style = {{width : 70, height : 30, backgroundColor : "white", borderRadius : 60, display : 'flex', alignItems : "center", flexDirection : "row",
                         padding : 2, justifyContent : 'space-around'
                     }}>
                         <FontAwesome5 name="star" size={15} color="#C9D8E2" solid />
-                        <Text style = {{fontSize : 20, fontWeight : "bold"}}>4.9</Text></View>
+                        <Text style = {{fontSize : 20, fontWeight : "bold"}}>{currentData.avgNote / 2}</Text></View>
                 </View>
                     </View>
 
@@ -65,7 +75,7 @@ const CoursePage = () => {
                             <View>
                                 <Text style = {{fontWeight : 'bold', marginBottom : 5}}>Price</Text>
                                 <View style = {{width : "auto", height : 50, backgroundColor : "#C9D8E2", display : "flex", flexDirection : 'row', justifyContent : "center", alignItems : "center", padding : 5, borderRadius : 10}}>
-                                    <Text style = {{fontWeight : "bold", color : "blue"}}>20 COIN / HOUR</Text>
+                                    <Text style = {{fontWeight : "bold", color : "blue"}}>{currentData.price} COIN / HOUR</Text>
                                 </View>
                             </View>
                         </View>
@@ -78,7 +88,7 @@ const CoursePage = () => {
                         </View>
                         <View style = {{marginLeft : 20, marginRight : 20, marginTop : 20, display : "flex", flexDirection : 'row', alignItems : "flex-start"}}>
                                 <FontAwesome5 name="user" size={20} color="black" solid />
-                                <Text style = {{marginLeft : 5, marginRight : 5, fontWeight : "bold"}}>private</Text>
+                                <Text style = {{marginLeft : 5, marginRight : 5, fontWeight : "bold"}}>{currentData.status == true ? "Private" : "Public"}</Text>
                                 <FontAwesome5 name="compass" size={20} color="black" solid />
                                 <Text style = {{marginLeft : 5, marginRight : 5, fontWeight : "bold"}}>Rabat, Morroco</Text>
                         </View>

@@ -1,16 +1,86 @@
-import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import Switch from '../../libs/Switch';
-import { useState } from 'react';
-import SearchLine from '../../libs/SearchLine';
-import Card from '../../libs/Card';
-import Menu from '../../libs/menu';
-import AbsolutMenu from '../../libs/AbsolutMenu';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { SearchLine } from '../../libs/SearchLine';
 import Categories from '../../libs/Categories';
+import CourseService from '../../database-conect/coursesapi'; // Ensure CourseService is correctly imported
+import Menu from '../../libs/menu';
 
-export function Home() {
+const initialCategories = [
+    {
+        title: 'Popular Courses',
+        items: [
+            { id: 1, content: 'Item 1' },
+            { id: 2, content: 'Item 2' },
+            { id: 3, content: 'Item 3' },
+        ],
+    },
+    {
+        title: 'New Courses',
+        items: [
+            { id: 4, content: 'Item 4' },
+            { id: 5, content: 'Item 5' },
+            { id: 6, content: 'Item 6' },
+        ],
+    },
+    {
+        title: 'Courses for you',
+        items: [
+            { id: 4, content: 'Item 4' },
+            { id: 5, content: 'Item 5' },
+            { id: 6, content: 'Item 6' },
+        ],
+    },
+];
+
+const Home = () => {
     const [externselected, setexternselected] = useState("");
+    const [categories, setCategories] = useState(initialCategories);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            setLoading(true);
+            try {
+                const courseService = new CourseService("http://172.20.10.2:3000");
+                const popularCourses = await courseService.getCoursesByPopularity();
+                const coursesToday = await courseService.getCoursesByDate('today');
+                const coursesNextTwoDays = await courseService.getCourses();
+                setCategories([
+                    {
+                        title: 'Popular Courses',
+                        items: popularCourses.map((course: any) => ({
+                            id: course._id,
+                            content: course,
+                        })),
+                    },
+                    {
+                        title: 'New Courses',
+                        items: coursesToday.map((course: any) => ({
+                            id: course._id,
+                            content: course,
+                        })),
+                    },
+                    {
+                        title: 'Courses for you',
+                        items: coursesNextTwoDays.map((course: any) => ({
+                            id: course._id,
+                            content: course,
+                        })),
+                    },
+                ]);
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+                // On peut mettre à jour ici un état d'erreur si nécessaire
+            } finally {
+                setLoading(false); // Arrêt du chargement
+            }
+        };
+        console.log("fetching courses");
+        fetchCourses();
+    }, []); // Le tableau vide assure que l'effet ne s'exécute qu'une seule fois au démarrage
+
+
     return(
         <View style= {styles.container}>
             <View style= {{marginTop : 90}}></View>
@@ -20,8 +90,12 @@ export function Home() {
             <View style = {styles.centerelement}>
                 <SearchLine></SearchLine></View>
             <Menu></Menu>
-            <Categories></Categories>
-
+            {loading ? (
+                <ActivityIndicator size="large" color="#0000ff" />
+            ) : (
+                <Categories initialCategories={categories} />
+            )}
+            <View style = {{height : 130}}></View>
         </View>
     );
 };
@@ -65,3 +139,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
 });
+
+export default Home;

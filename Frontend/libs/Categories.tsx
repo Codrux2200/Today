@@ -3,40 +3,22 @@ import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 import Card from './Card'; // Adjust the import path as necessary
 import GlobalText from './GlobalText';
 
-const initialCategories = [
-    {
-        title: 'Popular Courses',
-        items: [
-            { id: 1, content: 'Item 1' },
-            { id: 2, content: 'Item 2' },
-            { id: 3, content: 'Item 3' },
-        ],
-    },
-    {
-        title: 'New Courses',
-        items: [
-            { id: 4, content: 'Item 4' },
-            { id: 5, content: 'Item 5' },
-            { id: 6, content: 'Item 6' },
-        ],
-    },
-    {
-        title: 'Courses for you',
-        items: [
-            { id: 4, content: 'Item 4' },
-            { id: 5, content: 'Item 5' },
-            { id: 6, content: 'Item 6' },
-        ],
-    },
-];
 
-const Categories: React.FC = () => {
+interface CategoriesProps {
+    initialCategories: any[];
+}
+
+
+
+const Categories: React.FC<CategoriesProps> = ({ initialCategories }) => {
     const [categories] = useState(initialCategories);
     const [currentCategory, setCurrentCategory] = useState<string | null>(null);
     const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
     const viewabilityConfig = useRef({ viewAreaCoveragePercentThreshold: 50 });
 
-    const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: Array<{ item: { title: string } }> }) => {
+    const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: Array<{ item: {
+        items: ArrayLike<any> | null | undefined; title: string 
+} }> }) => {
         if (viewableItems && viewableItems.length > 0) {
             setCurrentCategory(viewableItems[0].item.title);
         }

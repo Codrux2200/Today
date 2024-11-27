@@ -1,14 +1,14 @@
-
 import Fastify from 'fastify';
 import mongoose from 'mongoose';
 import registerRoutes from './routes';
 import dotenv from 'dotenv';
-
+ 
 dotenv.config();
 
 const startServer = async () => {
   const app = Fastify();
   const PORT = process.env.PORT || 3000;
+  const HOST = process.env.HOST || '0.0.0.0';
 
   try {
     await mongoose.connect(process.env.MONGO_URI || '');
@@ -21,14 +21,13 @@ const startServer = async () => {
   registerRoutes(app);
 
   try {
-    await app.listen({ port: Number(PORT) });
-    console.log(`✅ Server is running on http://localhost:${PORT}`);
+    await app.listen({ port: Number(PORT), host: HOST });
+    console.log(`✅ Server is running on http://${HOST}:${PORT}`);
   } catch (err) {
     console.error('❌ Error starting server:', err);
     process.exit(1);
   }
 };
-
 
 startServer().catch(err => {
   console.error('❌ Error in startServer:', err);

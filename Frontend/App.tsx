@@ -4,7 +4,7 @@ import { NavigationContainer, NavigationContainerRef } from '@react-navigation/n
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Starter } from './pages/starter/starter';
 import { StarterLogin } from './pages/starter/starterlogin';
-import { Home } from './pages/home/home';
+import Home from './pages/home/home';
 import AbsolutMenu from './libs/AbsolutMenu';
 import ProfilePage from './pages/profile/profile';
 import { useEffect, useState } from 'react';

@@ -39,7 +39,7 @@ export const StarterButton: React.FC<StarterButtonProps> = ({ title, type, actio
 
     <TouchableOpacity 
       style={[styles.button, styles.button2]} 
-      onPress={() => {alert('MongoDb isn\'t a connected well please configure it well before using it')}}
+      onPress={action}
     >
       <Text style={styles.buttonText}>I'am a consumer</Text>
     </TouchableOpacity>
