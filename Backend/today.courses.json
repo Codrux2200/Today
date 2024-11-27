@@ -1,0 +1,465 @@
+[{
+  "_id": "8fd9a11b-7c21-4032-9ab6-a3f6862342f2",
+  "Title": "Yoga for Beginners",
+  "date": "2024-11-27T23:12:43.810Z",
+  "status": true,
+  "location": {
+    "lat": 34.020882,
+    "long": -6.84165
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 8,
+      "by": "User1",
+      "comment": "Great for beginners!",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d750296"
+      }
+    }
+  ],
+  "price": 50,
+  "img": "https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.110Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.110Z"
+  }
+},
+{
+  "_id": "e5951808-89a0-4e65-98f6-97678ca2d485",
+  "Title": "Advanced Pilates",
+  "date": "2024-11-28T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 33.5901,
+    "long": -7.6019
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 9,
+      "by": "User2",
+      "comment": "Challenging and fun!",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d750297"
+      }
+    }
+  ],
+  "price": 60,
+  "img": "https://images.pexels.com/photos/4047366/pexels-photo-4047366.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.111Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.111Z"
+  }
+},
+{
+  "_id": "3bb9518f-e81d-4a39-be10-097076ca96a7",
+  "Title": "Cardio Workout",
+  "date": "2024-11-29T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 31.63491,
+    "long": -8.00289
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 7,
+      "by": "User3",
+      "comment": "Good for burning calories",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d750298"
+      }
+    }
+  ],
+  "price": 40,
+  "img": "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.112Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.112Z"
+  }
+},
+{
+  "_id": "d87cd822-682b-4deb-9c2a-773fef638ee2",
+  "Title": "HIIT Bootcamp",
+  "date": "2024-11-26T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 34.05,
+    "long": -6.85
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 8,
+      "by": "User4",
+      "comment": "Tough but rewarding!",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d750299"
+      }
+    }
+  ],
+  "price": 55,
+  "img": "https://images.pexels.com/photos/1552241/pexels-photo-1552241.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.112Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.112Z"
+  }
+},
+{
+  "_id": "2ae7280d-183a-43f8-9561-288eaa3d5ded",
+  "Title": "Strength Training",
+  "date": "2024-11-29T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 32.65,
+    "long": -7.622
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 9,
+      "by": "User5",
+      "comment": "Great for building muscle",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d75029a"
+      }
+    }
+  ],
+  "price": 70,
+  "img": "https://images.pexels.com/photos/247587/pexels-photo-247587.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.112Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.112Z"
+  }
+},
+{
+  "_id": "dcb8b924-f62a-4926-81f9-5a9981d403f6",
+  "Title": "Barre Fitness",
+  "date": "2024-11-27T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 33.5001,
+    "long": -7.6001
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 7,
+      "by": "User6",
+      "comment": "Perfect for flexibility",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d75029b"
+      }
+    }
+  ],
+  "price": 45,
+  "img": "https://images.pexels.com/photos/214575/pexels-photo-214575.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.113Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.113Z"
+  }
+},
+{
+  "_id": "5bddaa38-39d7-4614-bbb3-6d1b1b4c0bab",
+  "Title": "Cycling Class",
+  "date": "2024-11-29T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 31.5252,
+    "long": -7.9023
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 8,
+      "by": "User7",
+      "comment": "Amazing cardio session!",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d75029c"
+      }
+    }
+  ],
+  "price": 50,
+  "img": "https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.113Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.113Z"
+  }
+},
+{
+  "_id": "969d2cdf-c8ef-4539-9bdd-aa3ee4197098",
+  "Title": "Zumba Dance",
+  "date": "2024-11-28T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 32.0194,
+    "long": -7.4367
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 9,
+      "by": "User8",
+      "comment": "So much fun, I loved it!",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d75029d"
+      }
+    }
+  ],
+  "price": 35,
+  "img": "https://images.pexels.com/photos/1346265/pexels-photo-1346265.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.113Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.113Z"
+  }
+},
+{
+  "_id": "de5e506c-3094-4124-b278-b3ed9c7ee0da",
+  "Title": "Dance Workout",
+  "date": "2024-11-29T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 33.2123,
+    "long": -7.7688
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 7,
+      "by": "User9",
+      "comment": "A good workout but intense!",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d75029e"
+      }
+    }
+  ],
+  "price": 40,
+  "img": "https://images.pexels.com/photos/3757941/pexels-photo-3757941.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.113Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.113Z"
+  }
+},
+{
+  "_id": "71854ec1-d57f-430f-981f-b07b012f4afc",
+  "Title": "Kettlebell Training",
+  "date": "2024-11-27T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 33.1112,
+    "long": -7.943
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 8,
+      "by": "User10",
+      "comment": "Great for toning muscles",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d75029f"
+      }
+    }
+  ],
+  "price": 60,
+  "img": "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.113Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.113Z"
+  }
+},
+{
+  "_id": "ed5552a7-5af9-4254-9697-907e655050b5",
+  "Title": "Pilates & Flexibility",
+  "date": "2024-11-29T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 33.6193,
+    "long": -7.6169
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 8,
+      "by": "User11",
+      "comment": "Helps me stretch better!",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d7502a0"
+      }
+    }
+  ],
+  "price": 65,
+  "img": "https://images.pexels.com/photos/4058361/pexels-photo-4058361.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.114Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.114Z"
+  }
+},
+{
+  "_id": "4d956156-f3ca-4c90-aa08-9b2aaea3dba4",
+  "Title": "Full Body Circuit",
+  "date": "2024-11-26T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 31.9456,
+    "long": -7.6311
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 9,
+      "by": "User12",
+      "comment": "A challenging workout",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d7502a1"
+      }
+    }
+  ],
+  "price": 55,
+  "img": "https://images.pexels.com/photos/669583/pexels-photo-669583.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.114Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.114Z"
+  }
+},
+{
+  "_id": "7d808cc1-2649-4c4a-8896-bb81c5dd8064",
+  "Title": "Power Yoga",
+  "date": "2024-11-26T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 34.0265,
+    "long": -6.8532
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 9,
+      "by": "User13",
+      "comment": "Mind and body in harmony",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d7502a2"
+      }
+    }
+  ],
+  "price": 75,
+  "img": "https://images.pexels.com/photos/3822838/pexels-photo-3822838.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.114Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.114Z"
+  }
+},
+{
+  "_id": "294d9b0e-75f2-43f8-8f7e-de457cdc9131",
+  "Title": "Aerobics for Energy",
+  "date": "2024-11-28T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 34.0544,
+    "long": -6.8281
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 8,
+      "by": "User14",
+      "comment": "Keeps me energized all day!",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d7502a3"
+      }
+    }
+  ],
+  "price": 30,
+  "img": "https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.114Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.114Z"
+  }
+},
+{
+  "_id": "865b076d-d6c9-43b8-9d22-351dabd76673",
+  "Title": "Morning Stretch Routine",
+  "date": "2024-11-26T23:12:43.816Z",
+  "status": true,
+  "location": {
+    "lat": 31.52,
+    "long": -7.86
+  },
+  "by": null,
+  "members": [],
+  "note": [
+    {
+      "note": 7,
+      "by": "User15",
+      "comment": "Great way to start the day!",
+      "_id": {
+        "$oid": "6747a76cf5012ace7d7502a4"
+      }
+    }
+  ],
+  "price": 25,
+  "img": "https://images.pexels.com/photos/4327190/pexels-photo-4327190.jpeg",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-11-27T23:12:44.114Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T23:12:44.114Z"
+  }
+}]
