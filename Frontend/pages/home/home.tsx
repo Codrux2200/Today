@@ -5,6 +5,7 @@ import { SearchLine } from '../../libs/SearchLine';
 import Categories from '../../libs/Categories';
 import CourseService from '../../database-conect/coursesapi'; // Ensure CourseService is correctly imported
 import Menu from '../../libs/menu';
+import Constants from 'expo-constants';
 
 const initialCategories = [
     {
@@ -42,7 +43,7 @@ const Home = () => {
         const fetchCourses = async () => {
             setLoading(true);
             try {
-                const courseService = new CourseService("http://172.20.10.2:3000");
+                const courseService = new CourseService(process.env.MONGOURI || 'defaultMongoURI');
                 const popularCourses = await courseService.getCoursesByPopularity();
                 const coursesToday = await courseService.getCoursesByDate('today');
                 const coursesNextTwoDays = await courseService.getCourses();

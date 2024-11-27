@@ -4,6 +4,7 @@ import Switch from '../../libs/Switch';
 import { SearchLine } from '../../libs/SearchLine';
 import Categories from '../../libs/Categories';
 import CourseService from '../../database-conect/coursesapi'; // Ensure CourseService is correctly imported
+import Constants from 'expo-constants';
 
 const initialCategories = [
     {
@@ -43,7 +44,7 @@ const CalendarPage = () => {
             setLoading(true); // Lancement du chargement
             try {
                 // Appel aux services pour récupérer les cours
-                const courseService = new CourseService("http://172.20.10.2:3000");
+                const courseService = new CourseService(process.env.MONGOURI || 'defaultMongoURI');
                 const popularCourses = await courseService.getCoursesByDate('today')
                 const coursesToday = await courseService.getCoursesByDate('nextTwoDays');
                 const coursesNextTwoDays = await courseService.getCoursesByDate('previous');
