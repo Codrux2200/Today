@@ -44,8 +44,8 @@ const CalendarPage = () => {
             setLoading(true); // Lancement du chargement
             try {
                 // Appel aux services pour récupérer les cours
-                const courseService = new CourseService(process.env.MONGOURI || 'defaultMongoURI');
-                console.log(process.env.MONGOURI);
+                const courseService = new CourseService("http://192.168.0.101:3000");
+                console.log("http://192.168.0.101:3000");
                 const popularCourses = await courseService.getCoursesByDate('today')
                 const coursesToday = await courseService.getCoursesByDate('nextTwoDays');
                 const coursesNextTwoDays = await courseService.getCoursesByDate('previous');
