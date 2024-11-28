@@ -43,8 +43,8 @@ const Home = () => {
         const fetchCourses = async () => {
             setLoading(true);
             try {
-                const courseService = new CourseService("http://192.168.0.101:3000");
-                console.log("http://192.168.0.101:3000");
+                const courseService = new CourseService(process.env.MONGOURI || 'defaultMongoURI');
+                console.log(process.env.MONGOURI);
                 const popularCourses = await courseService.getCoursesByPopularity();
                 const coursesToday = await courseService.getCoursesByDate('today');
                 const coursesNextTwoDays = await courseService.getCourses();
