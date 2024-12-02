@@ -6,13 +6,17 @@ export interface ICourse extends Document {
   _id: string;
   Title: string;
   date: string;
+  private ?: boolean;
+  memberMax : number;
+  memberMin : number;
   status: boolean;
   location: { lat: number; long: number };
-  by: mongoose.Schema.Types.ObjectId | null;
-  members: mongoose.Schema.Types.ObjectId[] | null;
+  by: string | null;
+  members: string | null;
   note: { note: number; by: string; comment: string }[];
   price: number;
   img : string;
+  completed: boolean;
 }
 
 const CourseSchema: Schema = new Schema(
@@ -20,13 +24,17 @@ const CourseSchema: Schema = new Schema(
     _id: { type: String, default: () => uuidv4() },
     Title: { type: String, required: true },
     date: { type: String, required: true },
+    private: { type: Boolean, default: false },
+    memberMin: { type: Number, default: 0 },
     status: { type: Boolean, default: false },
-    location: { 
+    MemberMax: { type: Number, required: true },
+    location: {
       lat: { type: Number, required: true },
       long: { type: Number, required: true }
     },
-    by: { type: Schema.Types.ObjectId, ref: 'Creator' },
-    members: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    completed: { type: Boolean, default: false },
+    by: { type: String},
+    members: [{}],
     note: [{ note: Number, by: String, comment: String }],
     price: { type: Number, required: true },
     img : {required: true, type : 'string'}

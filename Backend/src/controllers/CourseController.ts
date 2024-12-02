@@ -143,6 +143,8 @@ export const updateCourseHandler = async (req: FastifyRequest<{ Params: UpdateCo
   }
 };
 
+
+
 interface DeleteCourseParams {
   id: string;
 }
