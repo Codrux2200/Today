@@ -30,14 +30,14 @@ const TransactionSchema = new Schema(
    cours : {type : Boolean, default : false},
     payer: { type: String, ref: 'User', required: true }, 
     participants: [
-      {
+      {     
         user: { type: String, ref: 'User' }, 
         shareAmount: { type: Number, required: true }, 
-        status: { type: String, enum: ['pending', 'paid'], default: 'pending' }, 
+        status: { type: String, enum: ['pending', 'paid', 'forced'], default: 'pending' }, 
       },
     ],
     totalAmount: { type: Number, required: true }, 
-    status: { type: String, enum: ['pending', 'completed'], default: 'pending' }, 
+    status: { type: String, enum: ['pending', 'completed', 'forced'], default: 'pending' }, 
     coinUsed: [{ type: String, ref: 'Coin' }],
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },

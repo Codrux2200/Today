@@ -1,5 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import Course from '../models/Course';
+import statSeeCourses from '../models/statSeeCourses';
+
 
 const calculateAvgNote = (course : any) => {
   const totalNotes = course.note.reduce((sum: any, n: { note: any; }) => sum + n.note, 0);
@@ -35,7 +37,7 @@ export const getCoursesByPopularityHandler = async (req: FastifyRequest, reply: 
 
     const filteredCourses = coursesWithPopularity.filter(course => course.avgNote >= 7);
     filteredCourses.sort((a, b) => b.avgNote - a.avgNote);
-
+    
     reply.send(filteredCourses);
   } catch (err) {
     reply.status(500).send(err);
@@ -106,14 +108,21 @@ interface GetCourseByIdParams {
 export const getCourseByIdHandler = async (req: FastifyRequest<{ Params: GetCourseByIdParams }>, reply: FastifyReply) => {
   try {
     const course = await Course.findById(req.params.id).populate('by members');
+    console.log(req.user);
     if (!course) {
       reply.status(404).send({ message: 'Course not found' });
       return;
     }
+    const varstatSeeCourses = new statSeeCourses({
+      userId : req.user.id,
+      courseId : req.params.id,
+    });
+   await varstatSeeCourses.save();
     reply.send({
       ...course.toObject(),
       avgNote: calculateAvgNote(course)
     });
+
   } catch (err) {
     reply.status(500).send(err);
   }

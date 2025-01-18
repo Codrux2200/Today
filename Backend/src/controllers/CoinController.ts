@@ -23,6 +23,7 @@ export const createCoinHandler = async (req: FastifyRequest, reply: FastifyReply
     }
 };
 
+
 export const getUserCoinsHandler = async (req: FastifyRequest, reply: FastifyReply) => {
     try {
         const { userId } = req.body  as { userId: string };
