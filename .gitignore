@@ -2,7 +2,7 @@
 
 # dependencies
 node_modules/
-
+Front-Admin/
 # Expo
 .expo/
 dist/
