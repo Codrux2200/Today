@@ -1,3 +1,4 @@
 module.exports = {
-    assets: ['./assets/fonts'], // Chemin vers ton dossier de polices
+    assets: ['./assets/fonts/'],
   };
+  

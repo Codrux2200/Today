@@ -1,74 +1,65 @@
-import { StyleSheet, TextProps } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
-import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Starter } from './pages/starter/starter';
-import { StarterLogin } from './pages/starter/starterlogin';
-import Home from './pages/home/home';
-import AbsolutMenu from './libs/AbsolutMenu';
-import ProfilePage from './pages/profile/profile';
+import AppLoading from 'expo-app-loading';
 import { useEffect, useState } from 'react';
-import React from 'react';
-import CalendarPage from './pages/calendar/calendar';
-import CoursePage from './pages/course/course';
-import SearchPage from './pages/search/search';
-const Stack = createNativeStackNavigator();
-export const orange = "#FE7A36";
-import { Text } from "react-native";
+import { CustomText } from './utils/text/text';
+import { CustomButton } from './utils/button/TodayButton';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator, Header } from '@react-navigation/stack';
+import { enableScreens } from 'react-native-screens';
+import { HelloPage } from './pages/inscription';
 
+enableScreens();
 
-Text.contextType = React.createContext("HelveticaNeueMedium");
 const loadFonts = async () => {
   await Font.loadAsync({
-    "CustomFont": require("./assets/fonts/HelveticaNeueMedium.otf"),
+    'FigTree': require('./assets/fonts/Figtree-Regular.ttf'),
+    'FigTree-Bold': require('./assets/fonts/Figtree-Bold.ttf'),
   });
 };
 
 
+
+const ScheduleScreen = () => {
+  return (
+    <View style={styles.container}>
+      <CustomText>This is the Schedule Screen</CustomText>
+      <StatusBar style="auto" />
+    </View>
+  );
+};
+
+const Stack = createStackNavigator();
+
 export default function App() {
-  const routeNameRef = React.useRef<string | null>(null);
-  const navigationRef = React.useRef<NavigationContainerRef<any> | null>(null);
-  const [currentRoute, setCurrentRoute] = React.useState <any | null>("Starter");
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  React.useEffect(() => {
-    loadFonts().then(() => {setFontsLoaded(true), console.log("Fonts loaded")});
+  useEffect(() => {
+    loadFonts()
+      .then(() => setFontsLoaded(true))
+      .catch(console.error);
   }, []);
 
-  
-  useEffect(() => {
-    const state = navigationRef.current?.getRootState();
-    const currentRouteName = state?.routes[state.index]?.name;
-    routeNameRef.current = currentRouteName ?? null;
-  }, []);
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
 
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      onStateChange={() => {
-        const previousRouteName = routeNameRef.current;
-        const currentRouteName = navigationRef.current?.getCurrentRoute()?.name;
-
-        if (previousRouteName !== currentRouteName) {
-          // Le hook est activé à chaque changement de page
-          console.log('Page changed to', currentRouteName);
-          setCurrentRoute(currentRouteName);
-        }
-        routeNameRef.current = currentRouteName ?? null;
-      }}
-    >
-      {currentRoute != "Starter" && currentRoute != "Homeblogin" && currentRoute != "course" ? <AbsolutMenu /> : null}
-      <Stack.Navigator initialRouteName="Starter">
-        <Stack.Screen name="Starter" options={{ headerShown: false }} component={Starter} />
-        <Stack.Screen options={{ headerShown: false }} name="Homeblogin" component={StarterLogin} />
-        <Stack.Screen options={{ headerShown: false }} name="home" component={Home} />
-        <Stack.Screen options={{ headerShown: false }} name="user" component={ProfilePage} />
-        <Stack.Screen options={{ headerShown: false }} name="calendar" component={CalendarPage} />
-        <Stack.Screen options={{ headerShown: false }} name="course" component={CoursePage} />
-        <Stack.Screen options={{ headerShown: false }} name="search" component={SearchPage} />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HelloPage} options={{ headerShown: false }} />
+        <Stack.Screen name="Schedule" component={ScheduleScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-// Removed unused styles
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
