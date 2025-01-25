@@ -8,7 +8,9 @@ import { CustomButton } from './utils/button/TodayButton';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, Header } from '@react-navigation/stack';
 import { enableScreens } from 'react-native-screens';
-import { HelloPage } from './pages/inscription';
+import { HelloPage } from './pages/home_disconected';
+import { SignInPage } from './pages/signIn';
+import { SignUpPage } from './pages/signup';
 
 enableScreens();
 
@@ -49,7 +51,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HelloPage} options={{ headerShown: false }} />
-        <Stack.Screen name="Schedule" component={ScheduleScreen} />
+        <Stack.Screen name="SignIn" component={SignInPage} />
+        <Stack.Screen name="SignUp" component={SignUpPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -7,9 +7,12 @@ import { CustomButton } from '../utils/button/TodayButton';
 import { CustomText } from '../utils/text/text';
 import MosaicImages from '../utils/mosaic/mosaic';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
+
+
 export const HelloPage = () => {
 
-
+    const navigation = useNavigation();
 
     return(
         <LinearGradient colors={["#F7F7F7", "#FFFFFF"]}
@@ -32,8 +35,8 @@ export const HelloPage = () => {
                 <CustomText style = {{ color: "rgb(110 110 110)", paddingTop : 30,  width : "80%"}}>Access multitude of activities, discover new one and vary the pleasures.</CustomText>
             </View>
             <View style = {{marginBottom : "10%", display : "flex", flexDirection : "row", gap: 20}}>
-                <CustomButton title='Log In' color='#f0f0f0' width={"40%"} height={54} ></CustomButton>
-                <CustomButton title='Join Us' color='#4f9dff' textcolor='white' width={"40%"} height={54} ></CustomButton>
+                <CustomButton title='Log In' color='#f0f0f0' width={"40%"} height={54} OnClick={() => {navigation.navigate("SignIn" as never)}} ></CustomButton>
+                <CustomButton title='Join Us' color='#4f9dff' textcolor='white' width={"40%"} height={54} OnClick={() => {navigation.navigate("SignUp" as never)}} ></CustomButton>
 
             </View>
          </View>

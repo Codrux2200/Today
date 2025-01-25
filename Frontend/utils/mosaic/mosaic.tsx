@@ -39,7 +39,7 @@ const MosaicImages: React.FC = () => {
       {columns.map((column, columnIndex) => (
         <View key={columnIndex} style={styles.column}>
           {column.map(image => (
-            <View style = {styles.shadowBox}>
+            <View key={image.id} style = {styles.shadowBox}>
                 <Image
                 key={image.id}
                 source={{ uri: image.uri }}
@@ -60,10 +60,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 0,
     position : 'absolute',
-    zIndex : -100,
     top: -10,
     width: Dimensions.get('window').width + 110,
-    
   },
   column: {
     flex: 1,

@@ -1,17 +1,10 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, ButtonProps, DimensionValue } from 'react-native';
 import { CustomText } from '../text/text';
+import { CustomButtonProps } from '../../models/CustomButtonprops';
 
-interface CustomButtonProps extends ButtonProps {
-  color: string;
-  width : DimensionValue;
-  height : DimensionValue;
-  textcolor?: string;
-  border?: number;
-  borderWidth?: boolean;
-}
 
-export const CustomButton: React.FC<CustomButtonProps> = ({ title, color, textcolor, border, width, height, borderWidth, ...props }) => {
+export const CustomButton: React.FC<CustomButtonProps> = ({ title, color, textcolor, border, width, height, borderWidth, OnClick, ...props }) => {
 
     if (!textcolor){
         textcolor = "black";
@@ -22,6 +15,7 @@ export const CustomButton: React.FC<CustomButtonProps> = ({ title, color, textco
     
   return (
     <TouchableOpacity
+    onPress={OnClick}
       style={[
         styles.button,
         { backgroundColor: color },
