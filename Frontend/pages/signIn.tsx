@@ -36,7 +36,7 @@ export const SignInPage = () => {
             <CustomText style = {{marginTop: 4, textDecorationLine : "underline"}}>Forgot password ?</CustomText>
             </TouchableOpacity>
             <View style={{height : 20}}></View>
-            <CustomButton OnClick={() => {navigation.navigate("SignInVerifyCode" as never)}} border={12} textcolor="white" title="Log in with email" color ="#4f9dff" width={"90%"} height={54}></CustomButton>
+            <CustomButton  OnClick={() => {navigation.navigate("LogHome" as never)}} border={12} textcolor="white" title="Log in with email" color ="#4f9dff" width={"90%"} height={54}></CustomButton>
             <View>
             <View style = {{height : 20, borderBottomWidth : 1, width : "90%", borderColor : "rgb(233,233,233)"}}></View>
             <CustomText style={{ backgroundColor: "white", fontSize : 10, borderWidth: 2, borderColor : "white" , 

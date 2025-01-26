@@ -4,12 +4,13 @@ import { CustomText } from "../utils/text/text";
 import { CustomButton } from '../utils/button/TodayButton';
 import { FloatingTitleTextInputField } from '../utils/floating-input/floatinginput';
 import { SimplyLogin, SimplyLogup } from '../utils/button/Simplylogin';
+import { useNavigation } from '@react-navigation/native';
 
 
 export const SignUpPage = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-
+    const navigation = useNavigation();
     return(   
         <View style={styles.container}>
             <View style = {{marginTop : 30, marginLeft : 20, width : "100%"}}>
@@ -23,7 +24,7 @@ export const SignUpPage = () => {
             updateMasterState = {(attr, value) => {setEmail(value)}}
             />
             <View style={{height : 20}}></View>
-            <CustomButton border={12} textcolor="white" title="Continue with email" color ="#4f9dff" width={"90%"} height={54}></CustomButton>
+            <CustomButton OnClick={() => {navigation.navigate("SignInVerifyCode" as never)}} border={12} textcolor="white" title="Continue with email" color ="#4f9dff" width={"90%"} height={54}></CustomButton>
             <View>
             <View style = {{height : 20, borderBottomWidth : 1, width : "90%", borderColor : "rgb(233,233,233)"}}></View>
             <CustomText style={{ backgroundColor: "white", fontSize : 10, borderWidth: 2, borderColor : "white" , 
