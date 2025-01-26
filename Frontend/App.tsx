@@ -11,6 +11,8 @@ import { enableScreens } from 'react-native-screens';
 import { HelloPage } from './pages/home_disconected';
 import { SignInPage } from './pages/signIn';
 import { SignUpPage } from './pages/signup';
+import { VerifyCodePage } from './pages/login_process/verifyCode';
+import { PasswordGestionPage } from './pages/login_process/AddPassword';
 
 enableScreens();
 
@@ -53,6 +55,8 @@ export default function App() {
         <Stack.Screen name="Home" component={HelloPage} options={{ headerShown: false }} />
         <Stack.Screen name="SignIn" component={SignInPage} />
         <Stack.Screen name="SignUp" component={SignUpPage} />
+        <Stack.Screen name="SignInVerifyCode" component={VerifyCodePage} />
+        <Stack.Screen name="SignInVerifyPassword" component={PasswordGestionPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
