@@ -32,14 +32,14 @@ export const MinicourseView : React.FC<{colective : boolean, img : string, title
 };
 
 
-export const MiniCoursesList : React.FC<{courses : any, label : string}> = ({courses, label}) => {
+export const MiniCoursesList : React.FC<{courses : any, label : string, setShow : any}> = ({courses, label, setShow}) => {
 
     return(
         <View>
             <View style = {{flexDirection : "row", justifyContent : "space-between", alignItems : "center", marginRight : "5%"}}>
                 <CustomText style = {{fontWeight : "bold", fontSize : 22}}>{label}</CustomText>
 
-                <TouchableOpacity activeOpacity={1} style = {{flexDirection : "row", justifyContent : "space-between", alignItems : "center", gap: 10}}>
+                <TouchableOpacity onPress={() => {setShow({label : label, list : courses})}} activeOpacity={1} style = {{flexDirection : "row", justifyContent : "space-between", alignItems : "center", gap: 10}}>
                     <CustomText style = {{color : "rgb(65,99,130)"}}>Show All</CustomText>
                     <View style = {{width : 24, height : 24, backgroundColor : "rgb(212, 234,253)", borderRadius : 100, flexDirection : "row", alignItems : "center", justifyContent : "center"}}>
                         <CustomText style = {{fontWeight : "bold", color : "rgb(65,99,130)"}}>{">"}</CustomText></View>

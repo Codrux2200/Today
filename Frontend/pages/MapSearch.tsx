@@ -1,14 +1,13 @@
 import React from 'react';
 import { View, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import MapView, {Marker} from 'react-native-maps';
 import { CustomText } from '../utils/text/text';
 import { SearchBar } from '../utils/searchbar/searchbar';
-import { SportsPin } from '../utils/pins/SportsPin';
-import Back from "../assets/back.svg"
-import { MiniCoursesList } from '../utils/minicourseview/minicourseview';
+import { CreditPin } from '../utils/creditsView/creditpin';
+import Credit from "../assets/credit.svg";
 
+export const MapSearch = () => {
 
-export const Home = () => {
-    const [ShowAll, setShowAll] = React.useState({label : "", list : []});
     const ForYouCourses = [
         {
             "_id": "1",
@@ -103,70 +102,49 @@ export const Home = () => {
           }
     ]
 
-    const SportsList = [
-
-        {
-            label : 'yoga',
-            img : 'https://www.modesettravaux.fr/wp-content/uploads/modesettravaux/2023/10/shutterstock_2492220277-1-615x410.jpg'
-        },
-        {
-            label : 'Bike',
-            img : 'https://www.modesettravaux.fr/wp-content/uploads/modesettravaux/2023/10/shutterstock_2492220277-1-615x410.jpg'
-        },
-        {
-            label : 'Fitness',
-            img : 'https://www.modesettravaux.fr/wp-content/uploads/modesettravaux/2023/10/shutterstock_2492220277-1-615x410.jpg'
-        },
-        {
-            label : 'Swimming',
-            img : 'https://www.modesettravaux.fr/wp-content/uploads/modesettravaux/2023/10/shutterstock_2492220277-1-615x410.jpg'
-        }
-    ]
-    
-    if (ShowAll.list.length > 0) {
-        return(
-        <View style = {styles.container}>
-            <View style = {{marginTop : "20%", marginBottom : "5%", marginLeft : "5%"}}>
-                <TouchableOpacity onPress={() => setShowAll({label : "", list : []})}><Back style = {{marginLeft : "-5%"}}></Back></TouchableOpacity>
-                <CustomText style = {{fontWeight : "bold", fontSize : 32}}>{ShowAll.label}</CustomText>
-            </View>
-        </View>);
-    }
-
-
-    return (
-        <View style={styles.container}>
-            <View style = {{alignSelf: "center", marginTop : "20%", marginBottom : "5%"}}>
-                <SearchBar></SearchBar>
-            </View>
-            <ScrollView>
-                <View style={{height : 20}}></View>
-                <SafeAreaView>
-                <ScrollView horizontal = {true} contentContainerStyle= {{gap : 10, marginLeft : "5%"}}>
+    return(
+            <MapView
+                style={{ height: '89.4%', width: '100%' }}
+                initialRegion={{
+                    latitude: 34.002015,
+                    longitude: -6.853741,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                }}
+            >
                 {
-                    SportsList.map((sport, index) => (
-                        <SportsPin key={index} label={sport.label} img={sport.img} />
+                    ForYouCourses.map((course) => (
+                        <Marker
+                            key={course._id}
+                            coordinate={{ latitude: course.location.lat, longitude: course.location.long }}
+                            title={course.Title}
+                            description={course.by}
+                        >
+                            <View style={{ width: 48, height: 65, flexDirection : "column", justifyContent : "space-between", alignItems : "center" }}>
+                            <View style = {{  padding : 7 ,top: 15, zIndex : 1 ,height : 28, width : 38, backgroundColor : 'white', borderRadius : 100, justifyContent : 'center', alignItems : 'center', flexDirection : 'row', gap : 3}}>
+                            <CustomText style = {{fontSize : 10, color : 'black', textAlign : 'center'}}>20</CustomText>
+                            <Credit></Credit>
+                        </View>
+                                <View style = {{width : 48, height : 48, backgroundColor : "white", borderRadius : 100, overflow : "hidden", borderColor : "white", borderWidth : 2}}>
+                                    <Image source={{ uri: course.img }} style={{ width: 48, height: 48 }} />
+                                </View>
+                                <View style = {{width : 15, height : 15, backgroundColor : "white", borderRadius : 100, alignItems : "center", justifyContent : "center"}}>
+                                    <View style = {{width : 10, height : 10, backgroundColor : "rgb(69,151,247)", borderRadius : 100}}>
+                                        <CustomText></CustomText>
+                                    </View>
+                                </View>
+                            </View>
+                        </Marker>
                     ))
                 }
-                </ScrollView>
-                </SafeAreaView>
-                <View style = {{marginLeft : "5%"}}>
-                    <MiniCoursesList setShow={setShowAll} courses={ForYouCourses} label = "For you"></MiniCoursesList>
-                </View> 
-                <View style = {{height : 20}}></View>
-                <View style = {{marginLeft : "5%"}}>
-                    <MiniCoursesList setShow={setShowAll} courses={ForYouCourses} label = "Liked"></MiniCoursesList>
-                </View>
-            </ScrollView>
-        </View>
+
+            <View style = {{marginTop : "20%"}}></View>
+            <View style = {{alignSelf : "center"}}>
+            <SearchBar color='white'></SearchBar>
+            </View>
+
+
+            </MapView>
+
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        
-        backgroundColor: 'white',
-    },
-
-});
