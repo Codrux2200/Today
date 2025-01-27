@@ -139,7 +139,7 @@ export const MapSearch = () => {
                 }
 
             <View style = {{marginTop : "20%"}}></View>
-            <View style = {{alignSelf : "center"}}>
+            <View style = {[{alignSelf : "center"}, styles.shadowBox]}>
             <SearchBar color='white'></SearchBar>
             </View>
 
@@ -148,3 +148,15 @@ export const MapSearch = () => {
 
     );
 }
+
+const styles = StyleSheet.create({
+    shadowBox: {
+        borderRadius: 20,
+        shadowColor: '#3F3F3F', // Couleur de l'ombre (noir par défaut)
+        shadowOffset: { width: 0, height: 1 }, // Déplacement horizontal et vertical de l'ombre
+        shadowOpacity: 0.4, // Transparence de l'ombre (0 à 1)
+        shadowRadius: 5, // Rayon de l'ombre (effet de flou)
+        elevation: 5, // Ombre pour Android
+      },
+
+});
