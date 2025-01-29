@@ -14,6 +14,7 @@ type FloatingTitleTextInputFieldProps = {
   titleActiveColor?: string;
   titleInactiveColor?: string;
   textInputStyles?: object;
+  border?: boolean,
   otherTextInputProps?: TextInputProps;
 };
 
@@ -35,6 +36,7 @@ export class FloatingTitleTextInputField extends Component<
     titleInactiveColor: 'dimgrey',
     textInputStyles: {},
     otherTextInputProps: {},
+    border: true
   };
 
   private position: Animated.Value;
@@ -89,7 +91,7 @@ export class FloatingTitleTextInputField extends Component<
     return {
       top: this.position.interpolate({
         inputRange: [0, 1],
-        outputRange: [14, 0],
+        outputRange: [20, 0],
       }),
       fontSize: isFieldActive ? titleActiveSize : titleInActiveSize,
     };
@@ -107,11 +109,12 @@ export class FloatingTitleTextInputField extends Component<
       keyboardType,
       otherTextInputProps,
       isPassword,
+      border
     } = this.props;
     const { isPasswordVisible } = this.state;
 
     return (
-      <View style={Styles.container}>
+      <View style={[Styles.container, border ? {borderWidth : 0.5} : {borderWidth : 0}]}>
         <Animated.Text style={[Styles.titleStyles, this._returnAnimatedTitleStyles()]}>
           {title}
         </Animated.Text>

@@ -1,13 +1,14 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { CustomText } from '../text/text';
 import Loupe from '../../assets/loupe.svg';
 import { CreditPin } from '../creditsView/creditpin';
 import { StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 export const SearchBar = ({color = 'rgb(247,247,247)'}) => {
-    
+    const navigation = useNavigation();
     return(
-        <View style={[{height : 56, width : "90%", flexDirection: 'row', padding : 15 , justifyContent: "space-between", alignItems: 'center', backgroundColor: color, borderRadius: 20}]}>
+        <TouchableOpacity activeOpacity={1} onPress={() => {navigation.navigate("FilterPage" as never)}} style={[{height : 56, width : "90%", flexDirection: 'row', padding : 15 , justifyContent: "space-between", alignItems: 'center', backgroundColor: color, borderRadius: 20}]}>
             <Loupe></Loupe>
             <View>
                 <CustomText style = {{fontSize : 16, fontWeight : "bold"}}>What we do ?</CustomText>
@@ -16,7 +17,7 @@ export const SearchBar = ({color = 'rgb(247,247,247)'}) => {
             <View style={styles.shadowBox}>
                 <CreditPin></CreditPin>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 
 }

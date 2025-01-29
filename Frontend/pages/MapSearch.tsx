@@ -5,6 +5,7 @@ import { CustomText } from '../utils/text/text';
 import { SearchBar } from '../utils/searchbar/searchbar';
 import { CreditPin } from '../utils/creditsView/creditpin';
 import Credit from "../assets/credit.svg";
+import { Switch } from '../utils/switch/switch';
 
 export const MapSearch = () => {
 
@@ -104,7 +105,7 @@ export const MapSearch = () => {
 
     return(
             <MapView
-                style={{ height: '89.4%', width: '100%' }}
+                style={{ height: '100%', width: '100%' }}
                 initialRegion={{
                     latitude: 34.002015,
                     longitude: -6.853741,
@@ -117,8 +118,6 @@ export const MapSearch = () => {
                         <Marker
                             key={course._id}
                             coordinate={{ latitude: course.location.lat, longitude: course.location.long }}
-                            title={course.Title}
-                            description={course.by}
                         >
                             <View style={{ width: 48, height: 65, flexDirection : "column", justifyContent : "space-between", alignItems : "center" }}>
                             <View style = {{  padding : 7 ,top: 15, zIndex : 1 ,height : 28, width : 38, backgroundColor : 'white', borderRadius : 100, justifyContent : 'center', alignItems : 'center', flexDirection : 'row', gap : 3}}>
@@ -139,11 +138,11 @@ export const MapSearch = () => {
                 }
 
             <View style = {{marginTop : "20%"}}></View>
+            <Switch></Switch>
+            <View style = {{height : 20}}></View>
             <View style = {[{alignSelf : "center"}, styles.shadowBox]}>
             <SearchBar color='white'></SearchBar>
             </View>
-
-
             </MapView>
 
     );

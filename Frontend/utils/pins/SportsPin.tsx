@@ -14,6 +14,14 @@ export const SportsPin : React.FC<{ label: string; img : string }> = ({label, im
 };
 
 const styles = StyleSheet.create({
-
+    shadowBox: {
+        overflow : "visible",
+        borderRadius: 20,
+        shadowColor: '#3F3F3F', // Couleur de l'ombre (noir par défaut)
+        shadowOffset: { width: 0, height: 2 }, // Déplacement horizontal et vertical de l'ombre
+        shadowOpacity: 0.3, // Transparence de l'ombre (0 à 1)
+        shadowRadius: 2, // Rayon de l'ombre (effet de flou)
+        elevation: 5, // Ombre pour Android
+      },
 
 });

@@ -15,6 +15,8 @@ import { VerifyCodePage } from './pages/login_process/verifyCode';
 import { PasswordGestionPage } from './pages/login_process/AddPassword';
 import { Home } from "./pages/home";
 import { NavBarPages } from './pages/navbarPages';
+import FilterPage from './pages/FilterPage';
+import { ProfilPage } from './pages/Profil';
 
 enableScreens();
 
@@ -60,6 +62,8 @@ export default function App() {
         <Stack.Screen name="SignInVerifyCode" component={VerifyCodePage} />
         <Stack.Screen name="SignInVerifyPassword" component={PasswordGestionPage} />
         <Stack.Screen name="LogHome" component={NavBarPages} options={{ headerShown: false }} />
+        <Stack.Screen name="FilterPage" component={FilterPage} options={{ headerShown: false }} />
+        <Stack.Screen name="Profil" component={ProfilPage} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

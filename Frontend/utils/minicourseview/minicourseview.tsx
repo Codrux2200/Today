@@ -3,6 +3,7 @@ import { View, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Imag
 import { CustomText } from '../text/text';
 import Star from "../../assets/star.svg";
 import { CreditPin } from '../creditsView/creditpin';
+import { useNavigation } from '@react-navigation/native';
 export const MinicourseView : React.FC<{colective : boolean, img : string, title : string, author : string, rating : number, onPress : any}> = ({img, title, author, rating, onPress, colective}) => {
     return(
         <TouchableOpacity onPress = {onPress}>
@@ -33,6 +34,7 @@ export const MinicourseView : React.FC<{colective : boolean, img : string, title
 
 
 export const MiniCoursesList : React.FC<{courses : any, label : string, setShow : any}> = ({courses, label, setShow}) => {
+    const navigation = useNavigation();
 
     return(
         <View>
@@ -45,10 +47,10 @@ export const MiniCoursesList : React.FC<{courses : any, label : string, setShow 
                         <CustomText style = {{fontWeight : "bold", color : "rgb(65,99,130)"}}>{">"}</CustomText></View>
                 </TouchableOpacity>
             </View>
-            <ScrollView horizontal={true} style = {{flexDirection : "row", gap : 10, marginRight : "5%", width :"100%"}}>
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style = {{flexDirection : "row", gap : 10, marginRight : "5%", width :"100%"}}>
             {
                 courses.map((course : any, index : number) => (
-                    <MinicourseView colective={course.private} key={index} img={course.img} title={course.Title} author={course.by} rating={4.8} onPress={course.onPress} />
+                    <MinicourseView onPress={() => {navigation.navigate("Profil" as never)}} colective={course.private} key={index} img={course.img} title={course.Title} author={course.by} rating={4.8}  />
                 ))
             }
             </ScrollView>

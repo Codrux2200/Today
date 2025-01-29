@@ -1,15 +1,13 @@
-import React from 'react';
-import { View, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { CustomText } from '../utils/text/text';
+import { Switch } from '../utils/switch/switch';
 import { SearchBar } from '../utils/searchbar/searchbar';
-import { SportsPin } from '../utils/pins/SportsPin';
-import Back from "../assets/back.svg"
-import { MiniCoursesList } from '../utils/minicourseview/minicourseview';
-import { CoursesList } from '../utils/courseviewtime/courseviewtime';
+import { CoursesListTime } from '../utils/courseviewtime/courseviewtime';
 
-
-export const Home = () => {
-    const [ShowAll, setShowAll] = React.useState({label : "", list : []});
+export const ListSearch = () => {
+    const [selectedDay, setSelectedDay] = useState(0); // 0 représente aujourd'hui
+    const [ShowAll, setShowAll] = useState("");
     const ForYouCourses = [
         {
             "_id": "1",
@@ -104,71 +102,99 @@ export const Home = () => {
           }
     ]
 
-    const SportsList = [
 
-        {
-            label : 'yoga',
-            img : 'https://www.modesettravaux.fr/wp-content/uploads/modesettravaux/2023/10/shutterstock_2492220277-1-615x410.jpg'
-        },
-        {
-            label : 'Bike',
-            img : 'https://www.modesettravaux.fr/wp-content/uploads/modesettravaux/2023/10/shutterstock_2492220277-1-615x410.jpg'
-        },
-        {
-            label : 'Fitness',
-            img : 'https://www.modesettravaux.fr/wp-content/uploads/modesettravaux/2023/10/shutterstock_2492220277-1-615x410.jpg'
-        },
-        {
-            label : 'Swimming',
-            img : 'https://www.modesettravaux.fr/wp-content/uploads/modesettravaux/2023/10/shutterstock_2492220277-1-615x410.jpg'
+
+    const getDays = () => {
+        const days = [];
+        const today = new Date();
+
+        for (let i = 0; i < 5; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() + i);
+
+            const dayName = i === 0 ? 'Today' : date.toLocaleDateString('en-US', { weekday: 'short' });
+            const dayNumber = date.getDate();
+
+            days.push({ dayName, dayNumber });
         }
-    ]
-    
-    if (ShowAll.list.length > 0) {
-        return(
-        <View style = {styles.container}>
-            <View style = {{marginTop : "20%", marginBottom : "5%", marginLeft : "5%"}}>
-                <TouchableOpacity onPress={() => setShowAll({label : "", list : []})}><Back style = {{marginLeft : "-5%"}}></Back></TouchableOpacity>
-                <CustomText style = {{fontWeight : "bold", fontSize : 32}}>{ShowAll.label}</CustomText>
-            </View>
-            <CoursesList courses={ForYouCourses} setShow={setShowAll} label=""></CoursesList>
-        </View>);
-    }
 
+        return days;
+    };
+
+    const days = getDays();
 
     return (
-        <View style={styles.container}>
-            <View style = {{alignSelf: "center", marginTop : "20%", marginBottom : "5%"}}>
-                <SearchBar></SearchBar>
+        <View>
+            <View style={{ marginTop: '20%' }}></View>
+            <Switch />
+            <View style={{ height: 20 }}></View>
+            <View style={[{ alignSelf: 'center' }, styles.shadowBox]}>
+                <SearchBar />
             </View>
-            <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-                <View style={{height : 20}}></View>
-                <SafeAreaView>
-                <ScrollView  showsHorizontalScrollIndicator={false} horizontal = {true} contentContainerStyle= {{gap : 10, marginLeft : "5%"}}>
-                {
-                    SportsList.map((sport, index) => (
-                        <SportsPin key={index} label={sport.label} img={sport.img} />
-                    ))
-                }
-                </ScrollView>
-                </SafeAreaView>
-                <View style = {{marginLeft : "5%"}}>
-                    <MiniCoursesList setShow={setShowAll} courses={ForYouCourses} label = "For you"></MiniCoursesList>
-                </View> 
-                <View style = {{height : 20}}></View>
-                <View style = {{marginLeft : "5%"}}>
-                    <MiniCoursesList setShow={setShowAll} courses={ForYouCourses} label = "Liked"></MiniCoursesList>
+
+
+
+            <View style={{ height: 30 }}></View>
+                <View style={styles.navbarContainer}>
+                    {days.map((day, index) => (
+                        <TouchableOpacity
+                            key={index}
+                            onPress={() => setSelectedDay(index)}
+                            style={styles.dayContainer}
+                        >
+                            <CustomText style={[
+                                styles.dayText,
+                                selectedDay === index && styles.selectedDayText,
+                            ]}>
+                                {day.dayName} {day.dayNumber}
+                            </CustomText>
+                            {selectedDay === index && <View style={styles.underline} />}
+                        </TouchableOpacity>
+                    ))}
                 </View>
-            </ScrollView>
+                <View style = {{width : "100%"}}>
+                <CoursesListTime setShow={setShowAll} courses={ForYouCourses} label = "Liked"></CoursesListTime>
+                </View>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        
-        backgroundColor: 'white',
+    shadowBox: {
+        borderRadius: 20,
+        shadowColor: '#3F3F3F',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5,
     },
-
+    navbarContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+        height: 38,
+    },
+    dayContainer: {
+        alignItems: 'center',
+        height : 38,
+        justifyContent : "space-between"
+    },
+    dayText: {
+        fontSize: 16,
+        color: 'rgb(110,110,110)',
+    },
+    selectedDayText: {
+        color: '#000',
+        fontWeight: 'bold',
+    },
+    underline: {
+        height: 3,
+        borderTopLeftRadius : 20,
+        borderTopRightRadius : 20,
+        backgroundColor: 'rgb(69,151,247)',
+        width: '100%',
+        marginTop: 4,
+    },
 });
