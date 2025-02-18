@@ -20,7 +20,8 @@ export default (app: FastifyInstance) => {
   app.get('/admin/usersstats', {preHandler : VerifyAdminToken}, AdminController.getUserStats);
   app.get('/admin/coursesstats', {preHandler : VerifyAdminToken}, AdminController.getCourseStats);
   app.get('/admin/userpro', {preHandler : VerifyAdminToken}, AdminController.getUserProStats);
-
+  app.post('/validemail', UserController.verifyMail);
+  app.post('/confirmMail', UserController.confirmMail);
     // demande de parler de modalité
 
   // app.post("/admin/errasetransaction")

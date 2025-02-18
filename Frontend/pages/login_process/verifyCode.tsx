@@ -4,6 +4,7 @@ import { useHeaderHeight } from '@react-navigation/elements'
 import { CustomText } from "../../utils/text/text";
 import Lettersvg from "../../assets/letter.svg";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const VerificationCodeInput: React.FC = () => {
@@ -25,7 +26,7 @@ const VerificationCodeInput: React.FC = () => {
         handleSubmit();
       }
     };
-  
+    
     const handleKeyPress = (e: any, index: number) => {
       if (e.nativeEvent.key === "Backspace" && !code[index] && index > 0) {
         inputs.current[index - 1]?.focus();
@@ -63,6 +64,7 @@ const VerificationCodeInput: React.FC = () => {
   };
 
 export const VerifyCodePage = () => {
+  const [email , setemail] = useState("");
   const dismissKeyboard = () => {
     Keyboard.dismiss();
   };
@@ -76,6 +78,15 @@ export const VerifyCodePage = () => {
     return () => clearInterval(interval);
   }, [seconds]);
   const height = useHeaderHeight();
+
+  useEffect( () =>  {
+    const setEmail = async () => {
+      let vari = await AsyncStorage.getItem("RegisterEmail");
+      setemail(vari as string);
+      
+    }
+    setEmail();
+  }, []);
 
   return (
     <KeyboardAvoidingView
@@ -91,7 +102,7 @@ export const VerifyCodePage = () => {
         <CustomText style={{fontWeight : "bold", fontSize : 32}}>Enter the email code</CustomText>
         <View style={{height : 10}}></View>
         <CustomText style = {{color : "rgba(110,110,110,1)"}}>An email has been send to</CustomText>
-        <CustomText style={{fontWeight : "bold"}}>contact@company.com</CustomText>
+        <CustomText style={{fontWeight : "bold"}}>{email}</CustomText>
         <VerificationCodeInput />
         </View>
         <TouchableOpacity  disabled={seconds > 0} onPress={() => {setSeconds(30)}} style={[styles.confirmButton, seconds > 0 && styles.disabledButton]}>
