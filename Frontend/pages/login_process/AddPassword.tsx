@@ -4,6 +4,8 @@ import { CustomText } from "../../utils/text/text";
 import { FloatingTitleTextInputField } from "../../utils/floating-input/floatinginput";
 import { CustomButton } from "../../utils/button/TodayButton";
 import CheckSvg from "../../assets/check.svg";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 const Check: React.FC<{ label: string; checked: boolean; onChange: (checked: boolean) => void }> = ({ label, checked, onChange }) => {
   return (
@@ -21,6 +23,7 @@ const Check: React.FC<{ label: string; checked: boolean; onChange: (checked: boo
 };
 
 export const PasswordGestionPage = () => {
+  const navigation = useNavigation();
   const [password, setPassword] = useState("");
   const [validatingPassword, setValidatingPassword] = useState("");
   const [checks, setChecks] = useState({
@@ -31,7 +34,11 @@ export const PasswordGestionPage = () => {
     match: false,
   });
 
-  // Update checks based on password input
+  const handlepassword = async () => {
+    await AsyncStorage.setItem("password", password);
+    navigation.navigate("LogHome" as never);
+  };
+
   useEffect(() => {
     setChecks({
       characters: password.length >= 8,
@@ -41,6 +48,8 @@ export const PasswordGestionPage = () => {
       match: password === validatingPassword && validatingPassword.length >= 1,
     });
   }, [password, validatingPassword]);
+
+
 
   const allChecksPassed = Object.values(checks).every(Boolean);
 
@@ -94,6 +103,7 @@ export const PasswordGestionPage = () => {
           width={"90%"}
           height={54}
           disabled={!allChecksPassed}
+          onPress={handlepassword}
         />
         <View style={{ height: "10%" }} />
       </View>

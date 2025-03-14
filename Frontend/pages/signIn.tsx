@@ -5,12 +5,37 @@ import { CustomButton } from '../utils/button/TodayButton';
 import { FloatingTitleTextInputField } from '../utils/floating-input/floatinginput';
 import { SimplyLogin } from '../utils/button/Simplylogin';
 import { useNavigation } from '@react-navigation/native';
-
+import useApi from '../hooks/useApi';
+import Constants from "expo-constants";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+interface Login{
+    token : string| null; 
+    message : string | null;
+} 
 
 export const SignInPage = () => {
+    const API_URL = "http://172.20.10.12:3000";
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const navigation = useNavigation();
+    const { request, data, loading, error } = useApi<Login>(API_URL || " ");
+
+    const handleLogin = async () => {
+        try{
+            const response = await request("/login", "POST", {email, password});
+            console.log(API_URL);
+            console.log(response);
+            if(response?.message != null){
+                alert(response.message);
+            }
+            if (response?.token){
+                await AsyncStorage.setItem("token", response.token);
+                navigation.navigate("LogHome" as never);
+            }
+        } catch (err) {
+            console.error(err);
+    };
+}
 
     return(   
         <View style={styles.container}>
@@ -36,7 +61,7 @@ export const SignInPage = () => {
             <CustomText style = {{marginTop: 4, textDecorationLine : "underline"}}>Forgot password ?</CustomText>
             </TouchableOpacity>
             <View style={{height : 20}}></View>
-            <CustomButton  OnClick={() => {navigation.navigate("LogHome" as never)}} border={12} textcolor="white" title="Log in with email" color ="#4f9dff" width={"90%"} height={54}></CustomButton>
+            <CustomButton  OnClick={() => {handleLogin()}} border={12} textcolor="white" title="Log in with email" color ="#4f9dff" width={"90%"} height={54}></CustomButton>
             <View>
             <View style = {{height : 20, borderBottomWidth : 1, width : "90%", borderColor : "rgb(233,233,233)"}}></View>
             <CustomText style={{ backgroundColor: "white", fontSize : 10, borderWidth: 2, borderColor : "white" , 
@@ -52,8 +77,8 @@ export const SignInPage = () => {
             </View>
         </View>
     );
-
-}; 
+ 
+};
 
 const styles = StyleSheet.create({
     container:{
@@ -65,5 +90,3 @@ const styles = StyleSheet.create({
     }
     
 });
-
-

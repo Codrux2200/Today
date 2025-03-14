@@ -105,6 +105,7 @@ export const loginHandler = async (req: FastifyRequest, reply: FastifyReply) => 
   try {
     const { username, password } = req.body as { username: string; password: string };
     const user = await User.findOne({ username });
+    console.log("test");
     if (!user) {
       return reply.status(401).send({ message: 'Invalid username or password' });
     }

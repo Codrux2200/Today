@@ -5,27 +5,38 @@ import { CustomText } from "../../utils/text/text";
 import Lettersvg from "../../assets/letter.svg";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import useApi from "../../hooks/useApi";
 
-
+interface PassVerif {
+  message: string | null;
+}
+const API_URL = "http://172.20.10.12:3000";
 const VerificationCodeInput: React.FC = () => {
     const [code, setCode] = useState<string[]>(["", "", "", ""]);
-    const [loading, setLoading] = useState(false);
     const inputs = useRef<Array<TextInput | null>>([]);
+    const { request, data, loading, error } = useApi<PassVerif>(API_URL || " ");
     const navigation = useNavigation();
+
+
     const handleChange = (text: string, index: number) => {
-      if (text.length > 1) return; // Prevent multiple characters
+      if (text.length > 1) return;
       const newCode = [...code];
       newCode[index] = text;
       setCode(newCode);
-  
+    
+      // Focus sur la case suivante
       if (text && index < 3) {
         inputs.current[index + 1]?.focus();
       }
-  
-      if (newCode.every((char) => char !== "")) {
+    };
+    
+    // Quand `code` est mis à jour, vérifier si tous les champs sont remplis
+    useEffect(() => {
+      if (code.every((char) => char !== "")) {
         handleSubmit();
       }
-    };
+    }, [code]);
+    
     
     const handleKeyPress = (e: any, index: number) => {
       if (e.nativeEvent.key === "Backspace" && !code[index] && index > 0) {
@@ -33,12 +44,13 @@ const VerificationCodeInput: React.FC = () => {
       }
     };
   
-    const handleSubmit = () => {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        navigation.navigate("SignInVerifyPassword" as never);
-      }, 3000);
+    const handleSubmit = async () => {
+      console.log(code);
+        const response = await request("/confirmMail", "POST", {email : await AsyncStorage.getItem("RegisterEmail"), code : code.join("")});
+        console.log(response);
+        if(response?.message != null){
+          navigation.navigate("SignInVerifyPassword" as never);
+        }
     };
   
     return (
@@ -64,6 +76,7 @@ const VerificationCodeInput: React.FC = () => {
   };
 
 export const VerifyCodePage = () => {
+  const { request, data, loading, error } = useApi<PassVerif>(API_URL || " ");
   const [email , setemail] = useState("");
   const dismissKeyboard = () => {
     Keyboard.dismiss();
@@ -79,14 +92,22 @@ export const VerifyCodePage = () => {
   }, [seconds]);
   const height = useHeaderHeight();
 
+
   useEffect( () =>  {
     const setEmail = async () => {
       let vari = await AsyncStorage.getItem("RegisterEmail");
       setemail(vari as string);
-      
     }
     setEmail();
   }, []);
+
+  useEffect(() => {
+    const sendEmail = async () => {
+      if (email === "") return;
+      await request("/validemail", "POST", {email : email});
+    }
+    sendEmail();
+  }, [email])
 
   return (
     <KeyboardAvoidingView
