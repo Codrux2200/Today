@@ -4,10 +4,10 @@ import { Course } from '../models/Course';
 import { Review } from '../models/Review';
 
 // Ajouter un like
-export const addLikeHandler = async (req: FastifyRequest<{ Params: { type: string; itemId: string } }>, reply: FastifyReply) => {
-  const { type, itemId } = req.params; // type = 'course' ou 'review', itemId = ID du cours ou de l'avis
+export const addLikeHandler = async (req: FastifyRequest, reply: FastifyReply) => {
+  const { type, itemId } = req.body as {type : string, itemId : string}; // type = 'course' ou 'review', itemId = ID du cours ou de l'avis
   const userId = req.user.id; // ID de l'utilisateur qui effectue l'action
-
+    console.log(type);
   try {
     // Vérifier que le type est valide
     if (!['course', 'review'].includes(type)) {

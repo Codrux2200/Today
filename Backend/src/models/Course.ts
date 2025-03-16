@@ -40,6 +40,8 @@ export interface ISpecificCourse extends Document {
   _id: string;
   courseId: string;
   date: Date;
+  type: string;
+  what : string;
   time: string;
   slots: number;
   members: string[];

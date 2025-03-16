@@ -4,8 +4,8 @@ import { Course } from '../models/Course';
 import  User  from '../models/User';
 
 // Ajouter un avis
-export const addReviewHandler = async (req: FastifyRequest<{Body : {courseId : string, rating : number, comment : string}}>, reply: FastifyReply) => {
-  const { courseId, rating, comment } = req.body;
+export const addReviewHandler = async (req: FastifyRequest, reply: FastifyReply) => {
+  const { courseId, rating, comment } = req.body as { courseId: string, rating: number, comment: string };
 
   try {
     // Vérification que le cours existe

@@ -55,6 +55,21 @@ export const verifyMail = async (req: FastifyRequest, reply: FastifyReply) => {
 };
 
 
+export const VerifyToken = async (req: FastifyRequest, reply: FastifyReply) => {
+  const token = req.headers.authorization;
+  if (!token) {
+    return reply.status(401).send({ message: 'No token provided' });
+  }
+  try {
+    const decoded = jwt.verify(token, 'your_jwt_secret');
+    req.user = decoded;
+    reply.status(200).send({ message: 'Token is valid', value : true });
+  } catch (err) {
+    reply.status(401).send({ message: 'Invalid token', value : false });
+  }
+};
+
+
 
 export const confirmMail = async (req: FastifyRequest, reply: FastifyReply) => {
   try {
@@ -153,5 +168,19 @@ export const getUsersHandler = async (req: FastifyRequest, reply: FastifyReply) 
     reply.send(users);
   } catch (err) {
     reply.status(500).send(err);
+  }
+};
+
+export const getProfileHandler = async (req: FastifyRequest, reply: FastifyReply) => {
+  const { id } = req.body as {id : string};
+  try {
+    const user = await User.find({ _id : id, isPro : true });
+    if (!user) {
+      return reply.status(404).send({ message: 'User not found or is not a pro user' });
+    }
+    reply.send({name : user[0].name, picture : user[0].profilePicture, adress : null});
+  } catch (err) {
+    reply.status
+    (500).send("Error getting user profile");
   }
 };

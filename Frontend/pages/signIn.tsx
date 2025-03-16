@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { CustomText } from "../utils/text/text";
 import { CustomButton } from '../utils/button/TodayButton';
@@ -13,16 +13,39 @@ interface Login{
     message : string | null;
 } 
 
+interface Token{
+    value : boolean | null;
+    message : string | null;
+}
+
 export const SignInPage = () => {
     const API_URL = "http://172.20.10.12:3000";
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const navigation = useNavigation();
-    const { request, data, loading, error } = useApi<Login>(API_URL || " ");
+    const { request: loginRequest, data: loginData, loading: loginLoading, error: loginError } = useApi<Login>(API_URL || " ");
+    const { request: tokenRequest, data: tokenData, loading: tokenLoading, error: tokenError } = useApi<Token>(API_URL || " ");
+    useEffect(() => {
+        const fetchToken = async () => {
+            const token = await AsyncStorage.getItem("token");
+            if(token){
+                const isvalid = await tokenRequest("/verifyToken", "GET", null, {authorization : `${token}`});
+                if (isvalid == null || isvalid == undefined){
+                    AsyncStorage.removeItem("token");
+                }else if (isvalid.value as boolean){
+                    navigation.navigate("LogHome" as never);
+                } else {
+                    AsyncStorage.removeItem("token");
+                }
+            }
+        }
+        fetchToken();
+    }, []);
+
 
     const handleLogin = async () => {
         try{
-            const response = await request("/login", "POST", {email, password});
+            const response = await loginRequest("/login", "POST", {email, password});
             console.log(API_URL);
             console.log(response);
             if(response?.message != null){

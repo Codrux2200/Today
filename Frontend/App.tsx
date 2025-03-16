@@ -49,6 +49,7 @@ export default function App() {
       .catch(console.error);
   }, []);
 
+  
   if (!fontsLoaded) {
     return <AppLoading />;
   }

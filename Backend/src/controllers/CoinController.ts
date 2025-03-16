@@ -26,8 +26,7 @@ export const createCoinHandler = async (req: FastifyRequest, reply: FastifyReply
 
 export const getUserCoinsHandler = async (req: FastifyRequest, reply: FastifyReply) => {
     try {
-        const { userId } = req.body  as { userId: string };
-
+        const { userId } = req.user.id;
         const coins = await Coin.find();
         const userCoins = coins.filter(coin => {
             const decodedToken = jwt.verify(coin.token, 'your_jwt_secret') as { id: string, createdAt : string };

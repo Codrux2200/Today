@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 import { CustomText } from '../text/text';
 import Star from "../../assets/star.svg";
 import { CreditPin } from '../creditsView/creditpin';
 import { useNavigation } from '@react-navigation/native';
+import { LatLng } from 'react-native-maps';
+import useApi from '../../hooks/useApi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeStackNavigationProp } from 'react-native-screens/lib/typescript/native-stack/types';
+
 export const MinicourseView : React.FC<{colective : boolean, img : string, title : string, author : string, rating : number, onPress : any}> = ({img, title, author, rating, onPress, colective}) => {
+    const { request, data, loading, error } = useApi<author>(API_URL || " ");
+    const [realauthor, setrealAuthor] = React.useState({name : "", picture : "", adress : {latitude : 0, longitude : 0}} as author | null);
+    useEffect(() => {
+        const fetchAuthor = async () => {
+            if (author == "to do") return; 
+            const rauthor = await request("/profile", "POST", {id : author}, {Authorization : `Bearer ${await AsyncStorage.getItem("token")}`});
+            console.log(rauthor);
+            setrealAuthor(rauthor);
+        } 
+        fetchAuthor();
+    }
+    , []);
     return(
         <TouchableOpacity onPress = {onPress}>
             <View style = {styles.container}>
@@ -24,7 +41,7 @@ export const MinicourseView : React.FC<{colective : boolean, img : string, title
                 </View>
                 <View style = {{height : 4}}></View>
                 <View style = {{flexDirection : "column", justifyContent : "space-between", gap : "4%"}}>
-                        <CustomText style = {{ fontSize : 16, color : "rgb(110,110,110)"}}>{author}</CustomText>
+                        <CustomText style = {{ fontSize : 16, color : "rgb(110,110,110)"}}>{realauthor?.name}</CustomText>
                         <CustomText  style = {{ fontSize : 16, color : "rgb(110,110,110)"}}>{!colective ? "Collective course" : "Private course"}</CustomText>
                     </View>
             </View>
@@ -32,9 +49,19 @@ export const MinicourseView : React.FC<{colective : boolean, img : string, title
     );
 };
 
+interface author{
+    name : string,
+    picture: string,
+    adress : LatLng;
+}
+const API_URL = "http://172.20.10.12:3000";
+export type RootStackParamList = {
+    [x: string]: any;
+    YourScreen: { id: number } | undefined;
+  };
 
 export const MiniCoursesList : React.FC<{courses : any, label : string, setShow : any}> = ({courses, label, setShow}) => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<RootStackParamList>();
 
     return(
         <View>
@@ -50,7 +77,7 @@ export const MiniCoursesList : React.FC<{courses : any, label : string, setShow 
             <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style = {{flexDirection : "row", gap : 10, marginRight : "5%", width :"100%"}}>
             {
                 courses.map((course : any, index : number) => (
-                    <MinicourseView onPress={() => {navigation.navigate("Profil" as never)}} colective={course.private} key={index} img={course.img} title={course.Title} author={course.by} rating={4.8}  />
+                    <MinicourseView onPress={() => {navigation.navigate("Profil", {id : course._id})}} colective={course.private} key={index} img={course.img} title={course.title} author={course.by} rating={4.8} />
                 ))
             }
             </ScrollView>

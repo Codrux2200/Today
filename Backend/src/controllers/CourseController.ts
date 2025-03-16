@@ -37,6 +37,20 @@ export const getCoursesHandler = async (req: FastifyRequest, reply: FastifyReply
   }
 };
 
+
+
+export const getCourseByIdHandler = async (req: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+  try {
+    const course = await Course.findById(req.params.id);
+    if (!course) {
+      reply.status(404).send({ message: 'Course not found' });
+      return;
+    }
+    reply.send(course);
+  } catch (err) {
+    reply.status(500).send(err);
+  }
+};
 export const getSpecificCoursesHandler = async (req: FastifyRequest, reply: FastifyReply) => {
   try {
     const specificCourses = await SpecificCourse.find().populate('courseId');

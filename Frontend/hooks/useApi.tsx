@@ -21,15 +21,20 @@ const useApi = <T, >(baseUrl: string): ApiHook<T> => {
       setLoading(true);
       setError(null);
 
-      try {
-        const config: RequestInit = {
-          method,
-          headers: {
-            "Content-Type": "application/json",
-            ...headers,
-          },
-          body: body ? JSON.stringify(body) : null,
-        };
+    try {
+      const url = new URL(`${baseUrl}${endpoint}`);
+      const config: RequestInit = {
+        method,
+        headers: {
+        "Content-Type": "application/json",
+        ...headers,
+        },
+        body: method !== "GET" && body ? JSON.stringify(body) : undefined,
+      };
+
+      if (method === "GET" && body) {
+        Object.keys(body).forEach(key => url.searchParams.append(key, body[key]));
+      }
 
         const response = await fetch(`${baseUrl}${endpoint}`, config);
 
