@@ -5,6 +5,7 @@ import { Home } from './home';
 import Svg, { Path } from 'react-native-svg';
 import { MapSearch } from './MapSearch';
 import { FilterSearch } from './FilterSearch';
+import ProfileScreen from './ProfilScreen';
 
 
 const PersoSvg = ({ stroke = '#0D0D0D' }) => (
@@ -93,8 +94,7 @@ export const NavBarPages = () => {
     return(
         <View style = {{flex : 1, backgroundColor : "white"}}>
             { selected === 0 ?
-            <Home></Home> : selected == 1 ? <FilterSearch></FilterSearch> : <></>
-
+            <Home></Home> : selected == 1 ? <FilterSearch></FilterSearch> : selected == 3 ? <ProfileScreen></ProfileScreen> : <></>
             }
             <View style = {{ display : "flex", flexDirection : "row", height : 90, alignItems : "flex-start", justifyContent : "space-around", paddingTop : 20, backgroundColor : "white"}}>
                 <TouchableOpacity  onPress={() => {setSelected(0)}}><HomeSvg stroke={selected == 0 ? "rgb(69,151,247)" : "rgb(110,110,110)"}></HomeSvg></TouchableOpacity>

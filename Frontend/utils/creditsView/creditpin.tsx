@@ -12,3 +12,15 @@ export const CreditPin = () => {
     );
 
 }
+
+
+export const CreditPinBlue = () => {
+
+    return(
+        <View style = {{height : 28, width : 53, backgroundColor : 'rgb(94,171,248)', borderRadius : 100, justifyContent : 'center', alignItems : 'center', flexDirection : 'row', gap : 5}}>
+            <Credit></Credit>
+            <CustomText style = {{fontSize : 12, color : 'white', textAlign : 'center', fontWeight : "bold"}}>20</CustomText>
+        </View>
+    );
+
+}

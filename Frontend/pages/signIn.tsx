@@ -35,13 +35,12 @@ export const SignInPage = () => {
                 }else if (isvalid.value as boolean){
                     navigation.navigate("LogHome" as never);
                 } else {
-                    AsyncStorage.removeItem("token");
+                    AsyncStorage.clear();
                 }
             }
         }
         fetchToken();
     }, []);
-
 
     const handleLogin = async () => {
         try{

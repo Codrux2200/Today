@@ -18,6 +18,10 @@ export const Home = () => {
     const [ShowAll, setShowAll] = React.useState({label : "", list : []});
     const { request, data, loading, error } = useApi<courses>(API_URL || " ");
     const [ForYouCourses, setForYouCourses] = React.useState([] as any);
+
+    
+
+
     useEffect(() => {
         const fetchCourses = async () => {
             const forYouCourses = await request("/courses", "GET", null, {Authorization : `Bearer ${await AsyncStorage.getItem("token")}`});

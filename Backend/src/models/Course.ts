@@ -38,10 +38,10 @@ const CourseSchema: Schema = new Schema(
 
 export interface ISpecificCourse extends Document {
   _id: string;
-  courseId: string;
+  courseId: string | ICourse;
   date: Date;
   type: string;
-  what : string;
+  what : string
   time: string;
   slots: number;
   members: string[];

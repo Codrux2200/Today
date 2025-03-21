@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, Image, StyleSheet, ScrollView, useWindowDimensions, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { CustomText } from '../utils/text/text';
 import Star from "../assets/star_blue.svg";
@@ -9,10 +9,11 @@ import { CustomButton } from '../utils/button/TodayButton';
 import Back from "../assets/bigback.svg";
 import Heart from "../assets/heart.svg";
 import Share from "../assets/share.svg";
-import { useNavigation, RouteProp } from '@react-navigation/native';
+import { useNavigation, RouteProp,  useFocusEffect } from '@react-navigation/native';
 import useApi from '../hooks/useApi';
 import { API_URL } from '../utils/courseviewtime/courseviewtime';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CreditPin, CreditPinBlue } from '../utils/creditsView/creditpin';
 
 type RootStackParamList = {
     Profil: { id: string };
@@ -47,6 +48,7 @@ export const ProfilPage = (params: any) => {
     const [course, setCourse] = useState({} as Course | null);
     const [note, setNote] = useState(0);
     const [reviews, setReviews] = useState([] as unknown as Reviews | null);
+    const [sessions, setSessions] = useState(null as unknown as any);
     const windowsdimension = useWindowDimensions();
     useEffect(() => {
         const fetchCourse = async () => {
@@ -64,6 +66,27 @@ export const ProfilPage = (params: any) => {
         }
         fetchReviews();
     }, []);
+
+    useFocusEffect(
+        useCallback(() => {
+          const fetchTime = async () => {
+            setSessions(null);
+            const time = await AsyncStorage.getItem("sessions");
+            if (time) {
+                console.log(time);
+              const timeData = JSON.parse(time);
+             timeData.time = new Date(timeData.time);
+                console.log(timeData.courseId === params.route.params.id);
+              if (timeData.courseId !== params.route.params.id) {
+                AsyncStorage.removeItem("sessions");
+              } else {
+                setSessions(timeData);
+              }
+            }
+          };
+          fetchTime();
+        }, [params.route.params.id])
+      );
 
     useEffect(() => {
         if (reviews && reviews.reviews) {
@@ -174,14 +197,33 @@ export const ProfilPage = (params: any) => {
             </ScrollView>
 
             <View style={styles.footer}>
-                <CustomButton title={"View Schedule"} color={"rgb(69,151,247)"} width={"100%"} height={58} textcolor="white" />
+                {
+                    sessions ?
+                        <View style = {{width : "100%", alignItems : 'center', paddingLeft : 30, flexDirection : "row", justifyContent : "space-around", alignContent : "center"}}>
+                            <TouchableOpacity onPress={async () => {await AsyncStorage.removeItem("sessions", () =>  {navigation.navigate("Schedule" as never)});}}>
+                            <CustomText style={{ fontWeight: "bold", fontSize: 16 }}>
+                            {sessions.date} {new Date(sessions.time).toLocaleDateString('en-US', { weekday: 'long' })}, {sessions.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
+                            </CustomText>
+                            <CustomText style={{ color: "rgb(110,110,110)" }}>{sessions.duration}min · {sessions.booked}/{sessions.capacity}</CustomText>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style = {{width : 150, height : 58 , backgroundColor : "rgb(69,151,247)", borderRadius : 100, justifyContent : "center", alignItems : "center", flexDirection : "row", gap : 20}}>  
+                            <CustomText style = {{color : "white", fontWeight : "400", fontSize : 20}}>Book</CustomText>
+                            <CreditPinBlue></CreditPinBlue>
+                            </TouchableOpacity>
+
+                        </View>
+                    :
+                
+                <CustomButton onPress={() => {navigation.navigate("Schedule" as never)}} title={"View Schedule"} color={"rgb(69,151,247)"} width={"100%"} height={58} textcolor="white" />
+}
             </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: "white" },
+    container: { flex: 1, backgroundColor: "white", },
     header: { height: 100, flexDirection: "row", justifyContent: "space-between", padding: "3%", alignItems: "flex-end" },
     scrollView: { flex: 1, padding: "3%" },
     footer: { height: 100, justifyContent: "center", alignItems: "center", backgroundColor: "white" },

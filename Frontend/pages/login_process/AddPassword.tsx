@@ -36,7 +36,7 @@ export const PasswordGestionPage = () => {
 
   const handlepassword = async () => {
     await AsyncStorage.setItem("password", password);
-    navigation.navigate("LogHome" as never);
+    navigation.navigate("CropImage" as never);
   };
 
   useEffect(() => {

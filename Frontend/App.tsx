@@ -17,6 +17,9 @@ import { Home } from "./pages/home";
 import { NavBarPages } from './pages/navbarPages';
 import FilterPage from './pages/FilterPage';
 import { ProfilPage } from './pages/Profil';
+import HourChoosingPage from './pages/hourchosingpage';
+import ProfileScreen from './pages/ProfilScreen';
+import CircularCropPage from './pages/login_process/cropimage';
 
 enableScreens();
 
@@ -27,16 +30,6 @@ const loadFonts = async () => {
   });
 };
 
-
-
-const ScheduleScreen = () => {
-  return (
-    <View style={styles.container}>
-      <CustomText>This is the Schedule Screen</CustomText>
-      <StatusBar style="auto" />
-    </View>
-  );
-};
 
 const Stack = createStackNavigator();
 
@@ -49,22 +42,24 @@ export default function App() {
       .catch(console.error);
   }, []);
 
-  
+
   if (!fontsLoaded) {
     return <AppLoading />;
   }
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HelloPage} options={{ headerShown: false }} />
-        <Stack.Screen name="SignIn" component={SignInPage} />
-        <Stack.Screen name="SignUp" component={SignUpPage} />
-        <Stack.Screen name="SignInVerifyCode" component={VerifyCodePage} />
-        <Stack.Screen name="SignInVerifyPassword" component={PasswordGestionPage} />
-        <Stack.Screen name="LogHome" component={NavBarPages} options={{ headerShown: false }} />
-        <Stack.Screen name="FilterPage" component={FilterPage} options={{ headerShown: false }} />
-        <Stack.Screen name="Profil" component={ProfilPage} options={{ headerShown: false }} />
+      <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Schedule" component={HourChoosingPage} options={{headerShown : false}}/>
+      <Stack.Screen name="Home" component={HelloPage} options={{ headerShown: false }} />
+      <Stack.Screen name="SignIn" component={SignInPage} />
+      <Stack.Screen name="SignUp" component={SignUpPage} />
+      <Stack.Screen name="CropImage" component={CircularCropPage}></Stack.Screen>
+      <Stack.Screen name="SignInVerifyCode" component={VerifyCodePage} />
+      <Stack.Screen name="SignInVerifyPassword" component={PasswordGestionPage} />
+      <Stack.Screen name="LogHome" component={NavBarPages} options={{ headerShown: false }} />
+      <Stack.Screen name="FilterPage" component={FilterPage} options={{ headerShown: false }} />
+      <Stack.Screen name="Profil" component={ProfilPage} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

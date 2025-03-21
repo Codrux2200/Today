@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { Transaction } from '../models/Transaction';
-import Coin from '../models/Coin';
+import Coin, { ICoin } from '../models/Coin';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
 import Trash from '../models/Trash';
-import { Course } from '../models/Course';
+import { Course, ICourse } from '../models/Course';
 import { SpecificCourse } from '../models/Course'; // Import du modèle SpecificCourse
 
 
@@ -109,7 +109,8 @@ export const markPaymentAsCompletedHandler = async (req: FastifyRequest, reply: 
 
           // Ajouter des coins au créateur du cours
           for (let i = 0; i < transaction.totalAmount; i++) {
-            const newToken = jwt.sign({ id: specificCourseToPaid.courseId, createdAt: new Date().toISOString() }, 'your_jwt_secret');
+            const course = specificCourseToPaid.courseId as ICourse;  //PAS TESTER 
+            const newToken = jwt.sign({ id: course.by, createdAt: new Date().toISOString() }, 'your_jwt_secret');
             const newCoin = new Coin({ token: newToken });
             await newCoin.save();
           }

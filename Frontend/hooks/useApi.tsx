@@ -36,6 +36,8 @@ const useApi = <T, >(baseUrl: string): ApiHook<T> => {
         Object.keys(body).forEach(key => url.searchParams.append(key, body[key]));
       }
 
+      console.log(url);
+
         const response = await fetch(`${baseUrl}${endpoint}`, config);
 
         if (!response.ok) {

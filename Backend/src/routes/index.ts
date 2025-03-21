@@ -62,7 +62,7 @@ export default (app: FastifyInstance) => {
   app.delete("/deleteCoin" , CoinController.coinDestructor);
   app.post('/courses', CourseController.createCourseHandler);
   app.post('/specific-courses', CourseController.createSpecificCourseHandler);
-  app.get('/specific-courses', CourseController.getSpecificCoursesHandler);
+  app.get('/specific-courses/:courseId', CourseController.getSpecificCoursesHandler);
   app.get('/specific-courses/date', CourseController.getSpecificCoursesByDateHandler);
   app.get('/courses', CourseController.getCoursesHandler);
   app.get("/courses/:id", CourseController.getCourseByIdHandler);
